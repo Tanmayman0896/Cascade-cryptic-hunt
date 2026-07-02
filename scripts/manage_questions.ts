@@ -84,9 +84,6 @@ export async function importQuestionsFromFile(filePath: string): Promise<number>
   return count;
 }
 
-/**
- * Parse line-by-line CSV simple parser supporting quotes and commas.
- */
 function parseCSV(content: string): Record<string, string>[] {
   const lines = content.split(/\r?\n/).filter(l => l.trim().length > 0);
   if (lines.length === 0) return [];
