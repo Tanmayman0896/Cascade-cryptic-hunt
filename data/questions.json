@@ -228,10 +228,118 @@
     "answer": "victory"
   },
   {
+    "caseId": "02",
+    "puzzleKey": "map",
+    "question": "Each fragment's label is its grid address. Row 0=north, Row 1=south, C0=west, C7=east. Drag all 16 pieces to their correct cells.",
+    "answer": "AURELIS"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "cipher",
+    "question": "Six symbols carved into the eastern gate stone, encoding a two-word phrase.",
+    "answer": "ANCHOR HOLDS"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "sudoku",
+    "question": "Frequency Grid 9x9 Sudoku completion.",
+    "answer": "5,3,4,6,7,8,9,1,2|6,7,2,1,9,5,3,4,8|1,9,8,3,4,2,5,6,7|8,5,9,7,6,1,4,2,3|4,2,6,8,5,3,7,9,1|7,1,3,9,2,4,8,5,6|9,6,1,5,3,7,2,8,4|2,8,7,4,1,9,6,3,5|3,4,5,2,8,6,1,7,9"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "archive",
+    "question": "Five fragments span nine centuries. Reconstruct the chronological order.",
+    "answer": "a,b,c,d,e"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "logic",
+    "question": "Select 4 gates from the bank and place them in the ring such that no adjacent pair produces identical output.",
+    "answer": "logic_ring_stable"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "cw_0",
+    "question": "The timeline continuum track (8 letters)",
+    "answer": "TIMELINE"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "cw_1",
+    "question": "The beginning point of Aurelis's journey (6 letters)",
+    "answer": "ORIGIN"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "cw_2",
+    "question": "Recorded historical testimony (6 letters)",
+    "answer": "RECORD"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "cw_3",
+    "question": "The direction of the gate stone inscription (7 letters)",
+    "answer": "EASTERN"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "cw_4",
+    "question": "Third cartographic expedition (7 letters)",
+    "answer": "CRUSADE"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "cw_5",
+    "question": "Lord of eternity who rules the underworld (6 letters)",
+    "answer": "OSIRIS"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "cw_6",
+    "question": "Project NULL lead scientist Dr. (4 letters)",
+    "answer": "VOSS"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "cw_7",
+    "question": "Unclassified archive findings (8 letters)",
+    "answer": "EVIDENCE"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "cw_8",
+    "question": "Voss's final instruction word (7 letters)",
+    "answer": "RESTORE"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "final",
+    "question": "Voss's last message hides a word in plain sight. Read the first letter of each sentence, top to bottom.",
+    "answer": "RESTORE"
+  },
+  {
+    "caseId": "03",
+    "puzzleKey": "caesar_scroll",
+    "question": "One fragment of a ceremonial hymn survived the collapse. Answer lies in how it begins.",
+    "answer": "FLAME"
+  },
+  {
+    "caseId": "03",
+    "puzzleKey": "chronicle_sort",
+    "question": "Six pages of a manuscript are scrambled. Order them chronologically.",
+    "answer": "0,1,2,3,4,5"
+  },
+  {
     "caseId": "04",
     "puzzleKey": "fake_login",
     "question": "Fake login administrative password",
     "answer": "neddih"
+  },
+  {
+    "caseId": "04",
+    "puzzleKey": "fortune_teller",
+    "question": "Fortune teller prophecy code",
+    "answer": "destiny"
   },
   {
     "caseId": "04",
@@ -240,10 +348,100 @@
     "answer": "carnival17"
   },
   {
+    "caseId": "04",
+    "puzzleKey": "audio_game",
+    "question": "Audio frequency sequence code",
+    "answer": "resonance"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "math-trick",
+    "question": "Magic number 0x5f3759df decimal digit sum ultimate answer.",
+    "answer": "42"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "wilhelm-scream",
+    "question": "Famous sound effect named after Private character in 1953 western.",
+    "answer": "wilhelm"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "taured-passport",
+    "question": "Mysterious Haneda Airport traveler country of origin in 1954.",
+    "answer": "taured"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "kryptos-cipher",
+    "question": "Kryptos sculpture section K2 decrypted city clue.",
+    "answer": "berlin"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "deep-blue",
+    "question": "World chess champion defeated by Deep Blue computer in 1997.",
+    "answer": "kasparov"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "golden-record",
+    "question": "Astronomer who spearheaded the Voyager Golden Record committee.",
+    "answer": "sagan"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "demon-core",
+    "question": "6.2 kg subcritical plutonium mass involved in Los Alamos criticality accidents.",
+    "answer": "plutonium"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "poe-cipher",
+    "question": "Solver who decrypted the final Poe cryptogram in 2000.",
+    "answer": "gil broza"
+  },
+  {
     "caseId": "06",
     "puzzleKey": "stage7",
     "question": "Sector 7 anomaly override key",
     "answer": "null7"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "quarantine-registration",
+    "question": "Quarantine registration clearance code",
+    "answer": "EVIDENCE_LOG"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "behavioral-match",
+    "question": "Behavioral match analysis key",
+    "answer": "MATCH_BEHAVIOR"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "black-symbol",
+    "question": "Black symbol anomaly identifier",
+    "answer": "ANOMALY_BLACK"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "identity-distortion",
+    "question": "Identity distortion override hash",
+    "answer": "DISTORTION_KEY"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "memory-corruption",
+    "question": "Memory corruption sector fix",
+    "answer": "CORRUPTION_FIX"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "final-transmission",
+    "question": "Final transmission resolution key",
+    "answer": "FINAL_KEY"
   },
   {
     "caseId": "07",
@@ -276,201 +474,33 @@
     "answer": "earth"
   },
   {
+    "caseId": "07",
+    "puzzleKey": "packet-answer",
+    "question": "Raw binary frame hex dump payload decoder",
+    "answer": "SHIELD"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "cipher-answer",
+    "question": "Vigenère decrypt ciphertext ZXHHPZM with key SHIELD",
+    "answer": "REPLACE"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "interlude-1",
+    "question": "Logistics system diagnostic anagram: R A U N Q T I N A E",
+    "answer": "QUARANTINE"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "interlude-2",
+    "question": "Logistics system diagnostic 8-bit ASCII binary sequence",
+    "answer": "SURVIVAL"
+  },
+  {
     "caseId": "08",
     "puzzleKey": "p1",
     "question": "Historical incident date timestamp (DD Month YYYY)",
     "answer": "14 october 1972"
-  },
-  {
-    "caseId": "02",
-    "puzzleKey": "cipher",
-    "question": "The Cipher Scroll — decode the two words carved before language was written",
-    "answer": "ANCHOR HOLDS"
-  },
-  {
-    "caseId": "02",
-    "puzzleKey": "archive",
-    "question": "The Archive Reconstruction — order the five fragments chronologically",
-    "answer": "a,b,c,d,e"
-  },
-  {
-    "caseId": "03",
-    "puzzleKey": "forgotten_hymn",
-    "question": "The Forgotten Hymn — acrostic keyword",
-    "answer": "FLAME"
-  },
-  {
-    "caseId": "03",
-    "puzzleKey": "caesar_scroll",
-    "question": "The Caesar Scroll — decrypted message",
-    "answer": "THE FLAME IS FADING"
-  },
-  {
-    "caseId": "03",
-    "puzzleKey": "chronicle_reconstruction",
-    "question": "The Chronicle Reconstruction — reassembled sentence",
-    "answer": "LIGHT LEADS ONLY THE WORTHY HOME"
-  },
-  {
-    "caseId": "03",
-    "puzzleKey": "memory_room",
-    "question": "The Memory Room — extracted keywords",
-    "answer": "MOON CROW 4 EYE KEY BLOOD"
-  },
-  {
-    "caseId": "03",
-    "puzzleKey": "temple_floor",
-    "question": "The Temple Floor — decoded symbol word",
-    "answer": "EMBER"
-  },
-  {
-    "caseId": "03",
-    "puzzleKey": "candle_piano",
-    "question": "The Candle Piano — correct play sequence",
-    "answer": "2 4 1 5 3"
-  },
-  {
-    "caseId": "03",
-    "puzzleKey": "flame_image_puzzle",
-    "question": "The Flame Image — identified name",
-    "answer": "AURELIS"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "math_trick",
-    "question": "The ultimate answer derived from the Quake III magic number digits",
-    "answer": "42"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "wilhelm_scream",
-    "question": "Famous cinema stock sound effect character name",
-    "answer": "WILHELM"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "taured_passport",
-    "question": "The non-existent country a mysterious traveller claimed as home",
-    "answer": "TAURED"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "kryptos_cipher",
-    "question": "The CIA Kryptos sculpture artist surname",
-    "answer": "SANBORN"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "deep_blue",
-    "question": "World chess champion defeated by the IBM computer",
-    "answer": "KASPAROV"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "golden_record",
-    "question": "Origin planet of the Voyager golden record",
-    "answer": "EARTH"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "poe_cipher",
-    "question": "Modern decryptor of the Poe cryptogram",
-    "answer": "GIL BRONZA"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "p2",
-    "question": "Witness Code — the staff ledger contradiction identifier",
-    "answer": "EK4"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "p3",
-    "question": "Codename — chemical atomic numbers decoded to letters",
-    "answer": "DELTA"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "p4",
-    "question": "Frequency PIN — 8x8 grid with 180-degree symmetry",
-    "answer": "7294"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "p5",
-    "question": "Destination — the location revealed by the witness testimonies",
-    "answer": "THE NULL ROOM"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "p6",
-    "question": "Project Name — 8-letter name from the archive index chain",
-    "answer": "NULL-GATE"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "p7",
-    "question": "Blueprint Cipher — rooms 1-7 read in sequence after corrections",
-    "answer": "WATCHER"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "p8",
-    "question": "Memory Sequences — corrected symbol at position 6 across sequences 1-4",
-    "answer": "ZERO"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "dossier_1",
-    "question": "Final Dossier — Transmission Date",
-    "answer": "14 OCTOBER 1972"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "dossier_2",
-    "question": "Final Dossier — Witness Code",
-    "answer": "EK4"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "dossier_3",
-    "question": "Final Dossier — Codename",
-    "answer": "DELTA"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "dossier_4",
-    "question": "Final Dossier — Frequency PIN",
-    "answer": "7294"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "dossier_5",
-    "question": "Final Dossier — Destination",
-    "answer": "THE NULL ROOM"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "dossier_6",
-    "question": "Final Dossier — Project Name",
-    "answer": "NULL-GATE"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "dossier_7",
-    "question": "Final Dossier — Facility Founded (spoken, not written)",
-    "answer": "1967"
-  },
-  {
-    "caseId": "08",
-    "puzzleKey": "dossier_8",
-    "question": "Final Dossier — Director Surname (heard in recovered audio)",
-    "answer": "VOSS"
-  },
-  {
-    "caseId": "09",
-    "puzzleKey": "morse",
-    "question": "Morse Transmission — the recovered six-word final transmission",
-    "answer": "THE ARCHIVE REMEMBERS WHAT WE FORGOT"
   }
 ]
