@@ -1,0 +1,284 @@
+[
+  {
+    "caseId": "01",
+    "puzzleKey": "seal_reveal_scarab",
+    "question": "Identify the seal showing a sacred beetle: 𓆣",
+    "answer": "Scarab Beetle"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "seal_reveal_uraeus",
+    "question": "Identify the seal showing a sacred cobra: 𓆗",
+    "answer": "Uraeus Cobra"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "seal_reveal_eye",
+    "question": "Identify the seal showing the protective eye: 𓂀",
+    "answer": "Eye of Horus"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_1",
+    "question": "{\"text\":\"What does CPU stand for?\",\"options\":[\"Central Processing Unit\",\"Computer Personal Unit\",\"Central Processor Unifier\"]}",
+    "answer": "Central Processing Unit"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_2",
+    "question": "{\"text\":\"Which of these is a database management system?\",\"options\":[\"HTML\",\"CSS\",\"PostgreSQL\",\"JavaScript\"]}",
+    "answer": "PostgreSQL"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_3",
+    "question": "{\"text\":\"What is the main function of a router?\",\"options\":[\"To power the local computer network\",\"To forward data packets between different computer networks\",\"To store static files for web servers\",\"To compile database query statements\"]}",
+    "answer": "To forward data packets between different computer networks"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_4",
+    "question": "{\"text\":\"Which protocol is used to secure communication over the web?\",\"options\":[\"HTTP\",\"FTP\",\"HTTPS\",\"SMTP\"]}",
+    "answer": "HTTPS"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_5",
+    "question": "{\"text\":\"What does RAM stand for?\",\"options\":[\"Read Access Memory\",\"Random Access Memory\",\"Rapid Action Module\",\"Run Active Memory\"]}",
+    "answer": "Random Access Memory"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_6",
+    "question": "{\"text\":\"What is the standard language used to style web pages?\",\"options\":[\"HTML\",\"CSS\",\"JavaScript\",\"Python\"]}",
+    "answer": "CSS"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_7",
+    "question": "{\"text\":\"Which company developed the Android operating system?\",\"options\":[\"Apple\",\"Microsoft\",\"Google\",\"Oracle\"]}",
+    "answer": "Google"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_8",
+    "question": "{\"text\":\"What is the name of the creator of Python programming language?\",\"options\":[\"Guido van Rossum\",\"Bjarne Stroustrup\",\"James Gosling\",\"Dennis Ritchie\"]}",
+    "answer": "Guido van Rossum"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_9",
+    "question": "{\"text\":\"In programming, what is a variable used for?\",\"options\":[\"Printing text\",\"Storing data values\",\"Connecting to databases\",\"Compiling code\"]}",
+    "answer": "Storing data values"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_10",
+    "question": "{\"text\":\"Which file format is commonly used to compress images on the web?\",\"options\":[\"TXT\",\"ZIP\",\"JPEG\",\"PDF\"]}",
+    "answer": "JPEG"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_1",
+    "question": "{\"name\":\"The Basic Mastaba\",\"grid\":[[0,0,0],[0,3,0],[1,1,1]]}",
+    "answer": "0,0,0|0,3,0|1,1,1"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_2",
+    "question": "{\"name\":\"The Double Pillars\",\"grid\":[[0,0,0],[2,0,2],[1,1,1]]}",
+    "answer": "0,0,0|2,0,2|1,1,1"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_3",
+    "question": "{\"name\":\"The Sanctuary\",\"grid\":[[0,4,0],[0,3,0],[1,1,1]]}",
+    "answer": "0,4,0|0,3,0|1,1,1"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_4",
+    "question": "{\"name\":\"The Royal Tomb\",\"grid\":[[0,4,0],[2,3,2],[1,1,1]]}",
+    "answer": "0,4,0|2,3,2|1,1,1"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_5",
+    "question": "{\"name\":\"The Twin Chambers\",\"grid\":[[0,0,0],[3,0,3],[1,1,1]]}",
+    "answer": "0,0,0|3,0,3|1,1,1"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_6",
+    "question": "{\"name\":\"The Capstone Tower\",\"grid\":[[0,4,0],[0,2,0],[1,1,1]]}",
+    "answer": "0,4,0|0,2,0|1,1,1"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_7",
+    "question": "{\"name\":\"The Grand Temple\",\"grid\":[[4,0,4],[2,3,2],[1,1,1]]}",
+    "answer": "4,0,4|2,3,2|1,1,1"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "papyrus_restore",
+    "question": "[\"I am Osiris, the lord of eternity, who rules the underworld.\",\"I have traversed the dark rivers of the Duat to reach the hall of Ma'at.\",\"My heart has been weighed against the feather of truth and found pure.\",\"Now, I speak the words of power to open the golden gates of the east.\",\"Let the sun god Ra arise and cast his eternal light upon the sands.\"]",
+    "answer": "0,1,2,3,4"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "pressure_plates_1",
+    "question": "Walk the path of creation: Drink from the river (🌊), bask in the solar fire (☉), ascend to the celestial star (⭐), receive the wisdom of the serpent (𓆗), and finally stand upon the eternal mountain (⛰️).",
+    "answer": "🌊,☉,⭐,𓆗,⛰️"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "pressure_plates_2",
+    "question": "The hunt begins under the silver moon (☽). The silent owl (𓅓) watches from above, as the sacred cat (𓃠) stalks through the temple shadows.",
+    "answer": "☽,𓅓,𓃠"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "pressure_plates_3",
+    "question": "Balance the primal elements: Quench the earth with the river (🌊), ignite the sacred fire (🔥), shape the mighty mountain (⛰️), and rise to meet the eternal sun (☉).",
+    "answer": "🌊,🔥,⛰️,☉"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "pressure_plates_4",
+    "question": "The golden sun (☉) rises high, followed by the flight of the solar owl (𓅓) as it ascends to the highest star (⭐).",
+    "answer": "☉,𓅓,⭐"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "pressure_plates_5",
+    "question": "The serpent (𓆗) crawls through the hot ashes of the fire (🔥), slides into the cool waters (🌊), and rests beneath the crescent moon (☽).",
+    "answer": "𓆗,🔥,🌊,☽"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "pressure_plates_6",
+    "question": "The earth mountain (⛰️) cracks open with volcanic fire (🔥), before it is cooled by the waters (🌊) of the Nile.",
+    "answer": "⛰️,🔥,🌊"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "pressure_plates_7",
+    "question": "First shines the distant star (⭐) beside the shining moon (☽). The cat (𓃠) leaps, guided by the silent flight of the owl (𓅓).",
+    "answer": "⭐,☽,𓃠,𓅓"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "pressure_plates_8",
+    "question": "Combine the cosmos: Ignite the flames (🔥), pour the river (🌊), align the golden sun (☉) with the silver moon (☽), and invoke the eternal star (⭐).",
+    "answer": "🔥,🌊,☉,☽,⭐"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "pressure_plates_9",
+    "question": "The guardian owl (𓅓) speaks to the royal cobra (𓆗). The sacred cat (𓃠) guides the spirit to the tombs of the eternal mountain (⛰️).",
+    "answer": "𓅓,𓆗,𓃠,⛰️"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "spell_making_1",
+    "question": "FIREBALL",
+    "answer": "AURA,IGNIS"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "spell_making_2",
+    "question": "MUD SHIELD",
+    "answer": "AQUA,TERRA"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "spell_making_3",
+    "question": "SEALING PORTAL",
+    "answer": "AETHER,IGNIS,TERRA"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "spell_making_4",
+    "question": "LIGHTNING STRIKE",
+    "answer": "AETHER,AURA,IGNIS"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "spell_making_5",
+    "question": "ICE WALL",
+    "answer": "AQUA,AURA"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "spell_making_6",
+    "question": "ALCHEMICAL ELIXIR",
+    "answer": "AETHER,AQUA,TERRA"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "word_find",
+    "question": "TOMB,SEAL,CRYPT,GOLD,OSIRIS,ANUBIS,SCARAB,MUMMY,EGYPT,SPHINX,TEMPLE,RUIN,SACRED,CURSE,DEATH",
+    "answer": "ANUBIS,CRYPT,CURSE,DEATH,EGYPT,GOLD,MUMMY,OSIRIS,RUIN,SACRED,SCARAB,SEAL,SPHINX,TEMPLE,TOMB"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tic_tac_toe",
+    "question": "Beat the Minimax AI Guardian",
+    "answer": "victory"
+  },
+  {
+    "caseId": "04",
+    "puzzleKey": "fake_login",
+    "question": "Fake login administrative password",
+    "answer": "neddih"
+  },
+  {
+    "caseId": "04",
+    "puzzleKey": "mirror_script",
+    "question": "Decrypted mirror inscription code",
+    "answer": "carnival17"
+  },
+  {
+    "caseId": "06",
+    "puzzleKey": "stage7",
+    "question": "Sector 7 anomaly override key",
+    "answer": "null7"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "wilhelm_scream",
+    "question": "Audio sample origin sound identifier",
+    "answer": "wilhelm"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "poe_cipher",
+    "question": "Author cipher resolution code",
+    "answer": "gil bronza"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "deep_blue",
+    "question": "Historic chess computer match victor opponent",
+    "answer": "kasparov"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "kryptos_cipher",
+    "question": "Kryptos sculpture section decryption result",
+    "answer": "sanborn"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "golden_record",
+    "question": "Voyager spacecraft golden record message origin planet",
+    "answer": "earth"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "p1",
+    "question": "Historical incident date timestamp (DD Month YYYY)",
+    "answer": "14 october 1972"
+  }
+]

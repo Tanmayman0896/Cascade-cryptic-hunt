@@ -66,42 +66,58 @@ const LEVELS: Level[] = [
     anomalies: {
       "27,13": {
         id: "a1",
-        puzzles: [],
+        puzzles: [
+          { type: 'seal_reveal' }
+        ],
         solved: false
       },
       "15,17": {
         id: "a2",
-        puzzles: [],
+        puzzles: [
+          { type: 'tech_quiz' }
+        ],
         solved: false
       },
       "25,24": {
         id: "a3",
-        puzzles: [],
+        puzzles: [
+          { type: 'tomb_builder' }
+        ],
         solved: false
       },
       "25,16": {
         id: "a4",
-        puzzles: [],
+        puzzles: [
+          { type: 'papyrus_restore' }
+        ],
         solved: false
       },
       "17,21": {
         id: "a5",
-        puzzles: [],
+        puzzles: [
+          { type: 'pressure_plates' }
+        ],
         solved: false
       },
       "17,1": {
         id: "a6",
-        puzzles: [],
+        puzzles: [
+          { type: 'spell_making' }
+        ],
         solved: false
       },
       "9,5": {
         id: "a7",
-        puzzles: [],
+        puzzles: [
+          { type: 'word_find' }
+        ],
         solved: false
       },
       "11,21": {
         id: "a8",
-        puzzles: [],
+        puzzles: [
+          { type: 'tic_tac_toe' }
+        ],
         solved: false
       }
     },
@@ -252,7 +268,13 @@ export function useGameEngine() {
         if (targetTile === 2) {
           const key = `${ny},${nx}`;
           if (anomalies[key] && !anomalies[key].solved) {
-            solveAnomaly(key);
+            const anomaly = anomalies[key];
+            console.log("[Anomaly Step Case 1]", { key, anomaly });
+            if (anomaly.puzzles && anomaly.puzzles.length > 0) {
+              setActiveAnomaly({ key, ...anomaly });
+            } else {
+              solveAnomaly(key);
+            }
             return prev;
           }
         }
