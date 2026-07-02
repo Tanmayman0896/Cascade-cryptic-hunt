@@ -1,126 +1,6 @@
 [
   {
     "caseId": "01",
-    "puzzleKey": "seal_reveal_scarab",
-    "question": "Identify the seal showing a sacred beetle: 𓆣",
-    "answer": "Scarab Beetle"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "seal_reveal_uraeus",
-    "question": "Identify the seal showing a sacred cobra: 𓆗",
-    "answer": "Uraeus Cobra"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "seal_reveal_eye",
-    "question": "Identify the seal showing the protective eye: 𓂀",
-    "answer": "Eye of Horus"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tech_quiz_1",
-    "question": "{\"text\":\"What does CPU stand for?\",\"options\":[\"Central Processing Unit\",\"Computer Personal Unit\",\"Central Processor Unifier\"]}",
-    "answer": "Central Processing Unit"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tech_quiz_2",
-    "question": "{\"text\":\"Which of these is a database management system?\",\"options\":[\"HTML\",\"CSS\",\"PostgreSQL\",\"JavaScript\"]}",
-    "answer": "PostgreSQL"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tech_quiz_3",
-    "question": "{\"text\":\"What is the main function of a router?\",\"options\":[\"To power the local computer network\",\"To forward data packets between different computer networks\",\"To store static files for web servers\",\"To compile database query statements\"]}",
-    "answer": "To forward data packets between different computer networks"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tech_quiz_4",
-    "question": "{\"text\":\"Which protocol is used to secure communication over the web?\",\"options\":[\"HTTP\",\"FTP\",\"HTTPS\",\"SMTP\"]}",
-    "answer": "HTTPS"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tech_quiz_5",
-    "question": "{\"text\":\"What does RAM stand for?\",\"options\":[\"Read Access Memory\",\"Random Access Memory\",\"Rapid Action Module\",\"Run Active Memory\"]}",
-    "answer": "Random Access Memory"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tech_quiz_6",
-    "question": "{\"text\":\"What is the standard language used to style web pages?\",\"options\":[\"HTML\",\"CSS\",\"JavaScript\",\"Python\"]}",
-    "answer": "CSS"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tech_quiz_7",
-    "question": "{\"text\":\"Which company developed the Android operating system?\",\"options\":[\"Apple\",\"Microsoft\",\"Google\",\"Oracle\"]}",
-    "answer": "Google"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tech_quiz_8",
-    "question": "{\"text\":\"What is the name of the creator of Python programming language?\",\"options\":[\"Guido van Rossum\",\"Bjarne Stroustrup\",\"James Gosling\",\"Dennis Ritchie\"]}",
-    "answer": "Guido van Rossum"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tech_quiz_9",
-    "question": "{\"text\":\"In programming, what is a variable used for?\",\"options\":[\"Printing text\",\"Storing data values\",\"Connecting to databases\",\"Compiling code\"]}",
-    "answer": "Storing data values"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tech_quiz_10",
-    "question": "{\"text\":\"Which file format is commonly used to compress images on the web?\",\"options\":[\"TXT\",\"ZIP\",\"JPEG\",\"PDF\"]}",
-    "answer": "JPEG"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tomb_builder_1",
-    "question": "{\"name\":\"The Basic Mastaba\",\"grid\":[[0,0,0],[0,3,0],[1,1,1]]}",
-    "answer": "0,0,0|0,3,0|1,1,1"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tomb_builder_2",
-    "question": "{\"name\":\"The Double Pillars\",\"grid\":[[0,0,0],[2,0,2],[1,1,1]]}",
-    "answer": "0,0,0|2,0,2|1,1,1"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tomb_builder_3",
-    "question": "{\"name\":\"The Sanctuary\",\"grid\":[[0,4,0],[0,3,0],[1,1,1]]}",
-    "answer": "0,4,0|0,3,0|1,1,1"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tomb_builder_4",
-    "question": "{\"name\":\"The Royal Tomb\",\"grid\":[[0,4,0],[2,3,2],[1,1,1]]}",
-    "answer": "0,4,0|2,3,2|1,1,1"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tomb_builder_5",
-    "question": "{\"name\":\"The Twin Chambers\",\"grid\":[[0,0,0],[3,0,3],[1,1,1]]}",
-    "answer": "0,0,0|3,0,3|1,1,1"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tomb_builder_6",
-    "question": "{\"name\":\"The Capstone Tower\",\"grid\":[[0,4,0],[0,2,0],[1,1,1]]}",
-    "answer": "0,4,0|0,2,0|1,1,1"
-  },
-  {
-    "caseId": "01",
-    "puzzleKey": "tomb_builder_7",
-    "question": "{\"name\":\"The Grand Temple\",\"grid\":[[4,0,4],[2,3,2],[1,1,1]]}",
-    "answer": "4,0,4|2,3,2|1,1,1"
-  },
-  {
-    "caseId": "01",
     "puzzleKey": "papyrus_restore",
     "question": "[\"I am Osiris, the lord of eternity, who rules the underworld.\",\"I have traversed the dark rivers of the Duat to reach the hall of Ma'at.\",\"My heart has been weighed against the feather of truth and found pure.\",\"Now, I speak the words of power to open the golden gates of the east.\",\"Let the sun god Ra arise and cast his eternal light upon the sands.\"]",
     "answer": "0,1,2,3,4"
@@ -181,6 +61,24 @@
   },
   {
     "caseId": "01",
+    "puzzleKey": "seal_reveal_eye",
+    "question": "Identify the seal showing the protective eye: 𓂀",
+    "answer": "Eye of Horus"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "seal_reveal_scarab",
+    "question": "Identify the seal showing a sacred beetle: 𓆣",
+    "answer": "Scarab Beetle"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "seal_reveal_uraeus",
+    "question": "Identify the seal showing a sacred cobra: 𓆗",
+    "answer": "Uraeus Cobra"
+  },
+  {
+    "caseId": "01",
     "puzzleKey": "spell_making_1",
     "question": "FIREBALL",
     "answer": "AURA,IGNIS"
@@ -217,9 +115,63 @@
   },
   {
     "caseId": "01",
-    "puzzleKey": "word_find",
-    "question": "TOMB,SEAL,CRYPT,GOLD,OSIRIS,ANUBIS,SCARAB,MUMMY,EGYPT,SPHINX,TEMPLE,RUIN,SACRED,CURSE,DEATH",
-    "answer": "ANUBIS,CRYPT,CURSE,DEATH,EGYPT,GOLD,MUMMY,OSIRIS,RUIN,SACRED,SCARAB,SEAL,SPHINX,TEMPLE,TOMB"
+    "puzzleKey": "tech_quiz_1",
+    "question": "{\"text\":\"What does CPU stand for?\",\"options\":[\"Central Processing Unit\",\"Computer Personal Unit\",\"Central Processor Unifier\"]}",
+    "answer": "Central Processing Unit"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_10",
+    "question": "{\"text\":\"Which file format is commonly used to compress images on the web?\",\"options\":[\"TXT\",\"ZIP\",\"JPEG\",\"PDF\"]}",
+    "answer": "JPEG"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_2",
+    "question": "{\"text\":\"Which of these is a database management system?\",\"options\":[\"HTML\",\"CSS\",\"PostgreSQL\",\"JavaScript\"]}",
+    "answer": "PostgreSQL"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_3",
+    "question": "{\"text\":\"What is the main function of a router?\",\"options\":[\"To power the local computer network\",\"To forward data packets between different computer networks\",\"To store static files for web servers\",\"To compile database query statements\"]}",
+    "answer": "To forward data packets between different computer networks"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_4",
+    "question": "{\"text\":\"Which protocol is used to secure communication over the web?\",\"options\":[\"HTTP\",\"FTP\",\"HTTPS\",\"SMTP\"]}",
+    "answer": "HTTPS"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_5",
+    "question": "{\"text\":\"What does RAM stand for?\",\"options\":[\"Read Access Memory\",\"Random Access Memory\",\"Rapid Action Module\",\"Run Active Memory\"]}",
+    "answer": "Random Access Memory"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_6",
+    "question": "{\"text\":\"What is the standard language used to style web pages?\",\"options\":[\"HTML\",\"CSS\",\"JavaScript\",\"Python\"]}",
+    "answer": "CSS"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_7",
+    "question": "{\"text\":\"Which company developed the Android operating system?\",\"options\":[\"Apple\",\"Microsoft\",\"Google\",\"Oracle\"]}",
+    "answer": "Google"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_8",
+    "question": "{\"text\":\"What is the name of the creator of Python programming language?\",\"options\":[\"Guido van Rossum\",\"Bjarne Stroustrup\",\"James Gosling\",\"Dennis Ritchie\"]}",
+    "answer": "Guido van Rossum"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tech_quiz_9",
+    "question": "{\"text\":\"In programming, what is a variable used for?\",\"options\":[\"Printing text\",\"Storing data values\",\"Connecting to databases\",\"Compiling code\"]}",
+    "answer": "Storing data values"
   },
   {
     "caseId": "01",
@@ -228,22 +180,52 @@
     "answer": "victory"
   },
   {
-    "caseId": "02",
-    "puzzleKey": "map",
-    "question": "Each fragment's label is its grid address. Row 0=north, Row 1=south, C0=west, C7=east. Drag all 16 pieces to their correct cells.",
-    "answer": "AURELIS"
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_1",
+    "question": "{\"name\":\"The Basic Mastaba\",\"grid\":[[0,0,0],[0,3,0],[1,1,1]]}",
+    "answer": "0,0,0|0,3,0|1,1,1"
   },
   {
-    "caseId": "02",
-    "puzzleKey": "cipher",
-    "question": "Six symbols carved into the eastern gate stone, encoding a two-word phrase.",
-    "answer": "ANCHOR HOLDS"
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_2",
+    "question": "{\"name\":\"The Double Pillars\",\"grid\":[[0,0,0],[2,0,2],[1,1,1]]}",
+    "answer": "0,0,0|2,0,2|1,1,1"
   },
   {
-    "caseId": "02",
-    "puzzleKey": "sudoku",
-    "question": "Frequency Grid 9x9 Sudoku completion.",
-    "answer": "5,3,4,6,7,8,9,1,2|6,7,2,1,9,5,3,4,8|1,9,8,3,4,2,5,6,7|8,5,9,7,6,1,4,2,3|4,2,6,8,5,3,7,9,1|7,1,3,9,2,4,8,5,6|9,6,1,5,3,7,2,8,4|2,8,7,4,1,9,6,3,5|3,4,5,2,8,6,1,7,9"
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_3",
+    "question": "{\"name\":\"The Sanctuary\",\"grid\":[[0,4,0],[0,3,0],[1,1,1]]}",
+    "answer": "0,4,0|0,3,0|1,1,1"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_4",
+    "question": "{\"name\":\"The Royal Tomb\",\"grid\":[[0,4,0],[2,3,2],[1,1,1]]}",
+    "answer": "0,4,0|2,3,2|1,1,1"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_5",
+    "question": "{\"name\":\"The Twin Chambers\",\"grid\":[[0,0,0],[3,0,3],[1,1,1]]}",
+    "answer": "0,0,0|3,0,3|1,1,1"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_6",
+    "question": "{\"name\":\"The Capstone Tower\",\"grid\":[[0,4,0],[0,2,0],[1,1,1]]}",
+    "answer": "0,4,0|0,2,0|1,1,1"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "tomb_builder_7",
+    "question": "{\"name\":\"The Grand Temple\",\"grid\":[[4,0,4],[2,3,2],[1,1,1]]}",
+    "answer": "4,0,4|2,3,2|1,1,1"
+  },
+  {
+    "caseId": "01",
+    "puzzleKey": "word_find",
+    "question": "TOMB,SEAL,CRYPT,GOLD,OSIRIS,ANUBIS,SCARAB,MUMMY,EGYPT,SPHINX,TEMPLE,RUIN,SACRED,CURSE,DEATH",
+    "answer": "ANUBIS,CRYPT,CURSE,DEATH,EGYPT,GOLD,MUMMY,OSIRIS,RUIN,SACRED,SCARAB,SEAL,SPHINX,TEMPLE,TOMB"
   },
   {
     "caseId": "02",
@@ -253,9 +235,9 @@
   },
   {
     "caseId": "02",
-    "puzzleKey": "logic",
-    "question": "Select 4 gates from the bank and place them in the ring such that no adjacent pair produces identical output.",
-    "answer": "logic_ring_stable"
+    "puzzleKey": "cipher",
+    "question": "Six symbols carved into the eastern gate stone, encoding a two-word phrase.",
+    "answer": "ANCHOR HOLDS"
   },
   {
     "caseId": "02",
@@ -313,9 +295,33 @@
   },
   {
     "caseId": "02",
+    "puzzleKey": "cw_keyword",
+    "question": "Crossword Keyword",
+    "answer": "TORECOVER"
+  },
+  {
+    "caseId": "02",
     "puzzleKey": "final",
     "question": "Voss's last message hides a word in plain sight. Read the first letter of each sentence, top to bottom.",
     "answer": "RESTORE"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "logic",
+    "question": "Select 4 gates from the bank and place them in the ring such that no adjacent pair produces identical output.",
+    "answer": "logic_ring_stable"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "map",
+    "question": "Each fragment's label is its grid address. Row 0=north, Row 1=south, C0=west, C7=east. Drag all 16 pieces to their correct cells.",
+    "answer": "AURELIS"
+  },
+  {
+    "caseId": "02",
+    "puzzleKey": "sudoku",
+    "question": "Frequency Grid 9x9 Sudoku completion.",
+    "answer": "5,3,4,6,7,8,9,1,2|6,7,2,1,9,5,3,4,8|1,9,8,3,4,2,5,6,7|8,5,9,7,6,1,4,2,3|4,2,6,8,5,3,7,9,1|7,1,3,9,2,4,8,5,6|9,6,1,5,3,7,2,8,4|2,8,7,4,1,9,6,3,5|3,4,5,2,8,6,1,7,9"
   },
   {
     "caseId": "03",
@@ -328,6 +334,12 @@
     "puzzleKey": "chronicle_sort",
     "question": "Six pages of a manuscript are scrambled. Order them chronologically.",
     "answer": "0,1,2,3,4,5"
+  },
+  {
+    "caseId": "04",
+    "puzzleKey": "audio_game",
+    "question": "Audio frequency sequence code",
+    "answer": "resonance"
   },
   {
     "caseId": "04",
@@ -348,36 +360,6 @@
     "answer": "carnival17"
   },
   {
-    "caseId": "04",
-    "puzzleKey": "audio_game",
-    "question": "Audio frequency sequence code",
-    "answer": "resonance"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "math-trick",
-    "question": "Magic number 0x5f3759df decimal digit sum ultimate answer.",
-    "answer": "42"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "wilhelm-scream",
-    "question": "Famous sound effect named after Private character in 1953 western.",
-    "answer": "wilhelm"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "taured-passport",
-    "question": "Mysterious Haneda Airport traveler country of origin in 1954.",
-    "answer": "taured"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "kryptos-cipher",
-    "question": "Kryptos sculpture section K2 decrypted city clue.",
-    "answer": "berlin"
-  },
-  {
     "caseId": "05",
     "puzzleKey": "deep-blue",
     "question": "World chess champion defeated by Deep Blue computer in 1997.",
@@ -385,9 +367,9 @@
   },
   {
     "caseId": "05",
-    "puzzleKey": "golden-record",
-    "question": "Astronomer who spearheaded the Voyager Golden Record committee.",
-    "answer": "sagan"
+    "puzzleKey": "deep_blue",
+    "question": "IBM Deep Blue chess champion name",
+    "answer": "GARRY KASPAROV"
   },
   {
     "caseId": "05",
@@ -397,9 +379,81 @@
   },
   {
     "caseId": "05",
+    "puzzleKey": "demon_core",
+    "question": "Plutonium sphere nickname",
+    "answer": "DEMON CORE"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "golden-record",
+    "question": "Astronomer who spearheaded the Voyager Golden Record committee.",
+    "answer": "sagan"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "golden_record",
+    "question": "Ann Druyan voyager record husband name",
+    "answer": "CARL SAGAN"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "kryptos-cipher",
+    "question": "Kryptos sculpture section K2 decrypted city clue.",
+    "answer": "berlin"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "kryptos_cipher",
+    "question": "Second clue passage",
+    "answer": "BERLIN"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "math-trick",
+    "question": "Magic number 0x5f3759df decimal digit sum ultimate answer.",
+    "answer": "42"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "math_trick",
+    "question": "Convert hex 0x5f3759df to decimal and sum the digits",
+    "answer": "42"
+  },
+  {
+    "caseId": "05",
     "puzzleKey": "poe-cipher",
     "question": "Solver who decrypted the final Poe cryptogram in 2000.",
     "answer": "gil broza"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "poe_cipher",
+    "question": "Poe Graham cipher solver name",
+    "answer": "GIL BROZA"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "taured-passport",
+    "question": "Mysterious Haneda Airport traveler country of origin in 1954.",
+    "answer": "taured"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "taured_passport",
+    "question": "Mystery passport country name",
+    "answer": "TAURED"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "wilhelm-scream",
+    "question": "Famous sound effect named after Private character in 1953 western.",
+    "answer": "wilhelm"
+  },
+  {
+    "caseId": "05",
+    "puzzleKey": "wilhelm_scream",
+    "question": "Sound effect Private character name",
+    "answer": "PRIVATE WILHELM"
   },
   {
     "caseId": "06",
@@ -409,51 +463,21 @@
   },
   {
     "caseId": "07",
-    "puzzleKey": "quarantine-registration",
-    "question": "Quarantine registration clearance code",
-    "answer": "EVIDENCE_LOG"
-  },
-  {
-    "caseId": "07",
     "puzzleKey": "behavioral-match",
-    "question": "Behavioral match analysis key",
-    "answer": "MATCH_BEHAVIOR"
+    "question": "Decontamination clearance passphrase derived from network diagnostic node status",
+    "answer": "LURE"
   },
   {
     "caseId": "07",
     "puzzleKey": "black-symbol",
-    "question": "Black symbol anomaly identifier",
-    "answer": "ANOMALY_BLACK"
+    "question": "Eliminated black symbol alert override key",
+    "answer": "REPLACE"
   },
   {
     "caseId": "07",
-    "puzzleKey": "identity-distortion",
-    "question": "Identity distortion override hash",
-    "answer": "DISTORTION_KEY"
-  },
-  {
-    "caseId": "07",
-    "puzzleKey": "memory-corruption",
-    "question": "Memory corruption sector fix",
-    "answer": "CORRUPTION_FIX"
-  },
-  {
-    "caseId": "07",
-    "puzzleKey": "final-transmission",
-    "question": "Final transmission resolution key",
-    "answer": "FINAL_KEY"
-  },
-  {
-    "caseId": "07",
-    "puzzleKey": "wilhelm_scream",
-    "question": "Audio sample origin sound identifier",
-    "answer": "wilhelm"
-  },
-  {
-    "caseId": "07",
-    "puzzleKey": "poe_cipher",
-    "question": "Author cipher resolution code",
-    "answer": "gil bronza"
+    "puzzleKey": "cipher-answer",
+    "question": "Vigenère decrypt ciphertext ZXHHPZM with key SHIELD",
+    "answer": "REPLACE"
   },
   {
     "caseId": "07",
@@ -463,9 +487,9 @@
   },
   {
     "caseId": "07",
-    "puzzleKey": "kryptos_cipher",
-    "question": "Kryptos sculpture section decryption result",
-    "answer": "sanborn"
+    "puzzleKey": "final-transmission",
+    "question": "Operation Deadlight final transmission classification key",
+    "answer": "AETHERION"
   },
   {
     "caseId": "07",
@@ -475,15 +499,9 @@
   },
   {
     "caseId": "07",
-    "puzzleKey": "packet-answer",
-    "question": "Raw binary frame hex dump payload decoder",
-    "answer": "SHIELD"
-  },
-  {
-    "caseId": "07",
-    "puzzleKey": "cipher-answer",
-    "question": "Vigenère decrypt ciphertext ZXHHPZM with key SHIELD",
-    "answer": "REPLACE"
+    "puzzleKey": "identity-distortion",
+    "question": "Reconstructed infected host identity code",
+    "answer": "INFILTRATE"
   },
   {
     "caseId": "07",
@@ -498,9 +516,147 @@
     "answer": "SURVIVAL"
   },
   {
+    "caseId": "07",
+    "puzzleKey": "kryptos_cipher",
+    "question": "Kryptos sculpture section decryption result",
+    "answer": "sanborn"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "memory-corruption",
+    "question": "Corrupted neural memory purge passphrase",
+    "answer": "OUTBREAK"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "packet-answer",
+    "question": "Raw binary frame hex dump payload decoder",
+    "answer": "SHIELD"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "poe_cipher",
+    "question": "Author cipher resolution code",
+    "answer": "gil bronza"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "quarantine-registration",
+    "question": "Quarantine transmission registration validation key",
+    "answer": "PLAGAS"
+  },
+  {
+    "caseId": "07",
+    "puzzleKey": "wilhelm_scream",
+    "question": "Audio sample origin sound identifier",
+    "answer": "wilhelm"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "dossier_1",
+    "question": "Final Dossier Field 1: Incident Date",
+    "answer": "14 october 1972"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "dossier_2",
+    "question": "Final Dossier Field 2: Initial Contradiction",
+    "answer": "ek4"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "dossier_3",
+    "question": "Final Dossier Field 3: Classification",
+    "answer": "delta"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "dossier_4",
+    "question": "Final Dossier Field 4: Sublevel Passcode",
+    "answer": "7294"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "dossier_5",
+    "question": "Final Dossier Field 5: Facility Sector",
+    "answer": "the null room"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "dossier_6",
+    "question": "Final Dossier Field 6: Anomaly Component",
+    "answer": "null-gate"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "dossier_7",
+    "question": "Final Dossier Field 7: Dialogue Founding Year",
+    "answer": "1967"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "dossier_8",
+    "question": "Final Dossier Field 8: Dialogue Director Surname",
+    "answer": "voss"
+  },
+  {
     "caseId": "08",
     "puzzleKey": "p1",
     "question": "Historical incident date timestamp (DD Month YYYY)",
     "answer": "14 october 1972"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "p2",
+    "question": "Three contradictions ledger initial code",
+    "answer": "ek4"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "p3",
+    "question": "Project NULL classification level",
+    "answer": "delta"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "p4",
+    "question": "Sublevel 3 security override passcode",
+    "answer": "7294"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "p5",
+    "question": "Restricted lab facility sector location name",
+    "answer": "the null room"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "p6",
+    "question": "Primary anomaly containment component",
+    "answer": "null-gate"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "p7",
+    "question": "Archive founding year spoken in audio dialogue",
+    "answer": "1967"
+  },
+  {
+    "caseId": "08",
+    "puzzleKey": "p8",
+    "question": "Director surname in audio file headers",
+    "answer": "voss"
+  },
+  {
+    "caseId": "09",
+    "puzzleKey": "morse",
+    "question": "Morse transmission recovered warning signal",
+    "answer": "THE ARCHIVE REMEMBERS WHAT WE FORGOT"
+  },
+  {
+    "caseId": "09",
+    "puzzleKey": "stage2",
+    "question": "Archive Decryption recovered keyword",
+    "answer": "RECOVERY"
   }
 ]

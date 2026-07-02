@@ -146,7 +146,6 @@ export async function getSession(): Promise<SessionData | null> {
       name: user.name,
       email: user.email,
       teamName: user.teamName ?? undefined,
-      password: user.password ?? undefined,
       integrity,
       recovered,
       hints,
@@ -192,7 +191,7 @@ export async function setSession(name: string, email: string, teamName?: string,
     
     if (!user) {
       // Create user
-      const hashedPassword = password ? hashPassword(password) : null
+      const hashedPassword = password ? (password.includes(':') ? password : hashPassword(password)) : null
       await db.insert(users).values({
         id: newUserId,
         name,
@@ -202,14 +201,18 @@ export async function setSession(name: string, email: string, teamName?: string,
       })
       user = { id: newUserId, name, email, teamName: teamName || null, password: hashedPassword, createdAt: new Date() }
     } else {
-      // Verify password if user exists
-      if (user.password && password && !verifyPassword(password, user.password)) {
-        throw new Error('Incorrect password for this email address.')
+      // Verify password if user exists and a new plaintext password is supplied
+      if (user.password && password && password !== user.password) {
+        if (!verifyPassword(password, user.password)) {
+          throw new Error('Incorrect password for this email address.')
+        }
       }
       // Update user info if they log in again with new info
       const updates: Record<string, any> = { name }
       if (teamName) updates.teamName = teamName
-      if (password) updates.password = hashPassword(password)
+      if (password && password !== user.password) {
+        updates.password = password.includes(':') ? password : hashPassword(password)
+      }
       await db.update(users).set(updates).where(eq(users.id, user.id))
       user = { ...user, ...updates }
     }

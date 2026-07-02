@@ -26,7 +26,7 @@ export default function Page() {
         if (data.success && data.progress?.stage) {
           if (data.progress.stage === "wheel") {
             saveStage("mirror");
-          } else if (data.progress.stage === "shooting") {
+          } else if (data.progress.stage === "shooting" || data.progress.stage === "fortune") {
             saveStage("ticket");
           } else {
             setStage(data.progress.stage);
@@ -40,6 +40,12 @@ export default function Page() {
   }, [saveStage]);
 
   useEffect(() => {
+    if (stage === "fortune") {
+      saveStage("ticket");
+    }
+  }, [stage, saveStage]);
+
+  useEffect(() => {
     if (stage === "completed") {
       markCaseCompleted("04");
       const timer = setTimeout(() => {
@@ -50,11 +56,11 @@ export default function Page() {
   }, [stage]);
 
   if (stage === "mirror") {
-    return <MirrorScriptPuzzle onSolved={() => saveStage("fortune")} />;
+    return <MirrorScriptPuzzle onSolved={() => saveStage("ticket")} />;
   }
 
   if (stage === "fortune") {
-    return <FortuneTellerPuzzle onSolved={() => saveStage("ticket")} />;
+    return null;
   }
 
   if (stage === "ticket") {

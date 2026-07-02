@@ -89,13 +89,13 @@ export default function OperationDeadlightPage() {
         {/* Act 1: Always accessible — no puzzle gate */}
         <Act1Archive />
 
-        {/* Act 2: Unlocked by default (Act 1 is narrative only) */}
-        <Act2Quarantine
+        {/* Stage 1 (Act 2 Quarantine): Commented out for now */}
+        {/* <Act2Quarantine
           onPuzzleSolved={() => markComplete('act-2')}
-        />
+        /> */}
 
-        {/* Act 3: Locked until Act 2 registration puzzle solved */}
-        {(isComplete('act-2') || devUnlockAll) && (
+        {/* Act 3: Unlocked (Stage 1 skipped) */}
+        {(true || isComplete('act-2') || devUnlockAll) && (
           <Act3Infection
             onPuzzleSolved={() => markComplete('act-3')}
           />

@@ -63,42 +63,53 @@ export async function POST(request: NextRequest) {
     const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000)
 
     // Rate Limiting Check (Max 3 sends per email per hour)
+    let isRateLimitedByDb = false
     if (isDbAvailable) {
-      const recentSends = await db
-        .select()
-        .from(emailTransmissions)
-        .where(
-          and(
-            eq(emailTransmissions.email, email),
-            gte(emailTransmissions.sentAt, oneHourAgo)
+      try {
+        const recentSends = await db
+          .select()
+          .from(emailTransmissions)
+          .where(
+            and(
+              eq(emailTransmissions.email, email),
+              gte(emailTransmissions.sentAt, oneHourAgo)
+            )
           )
+        if (recentSends.length >= 3) {
+          isRateLimitedByDb = true
+        }
+      } catch (dbErr) {
+        console.error('Database query error in rate limit check:', dbErr)
+        const mockRecent = Array.from(mockTransmissions.values()).filter(
+          t => t.email === email && t.sentAt >= oneHourAgo
         )
-      
-      if (recentSends.length >= 3) {
-        return NextResponse.json(
-          { success: false, message: 'Rate limit exceeded. Maximum 3 transmission requests per hour.' },
-          { status: 429 }
-        )
+        if (mockRecent.length >= 3) isRateLimitedByDb = true
       }
     } else {
       const mockRecent = Array.from(mockTransmissions.values()).filter(
         t => t.email === email && t.sentAt >= oneHourAgo
       )
       if (mockRecent.length >= 3) {
-        return NextResponse.json(
-          { success: false, message: 'Rate limit exceeded. Maximum 3 transmission requests per hour.' },
-          { status: 429 }
-        )
+        isRateLimitedByDb = true
       }
     }
 
-    // Preserve existing teamName and password if active session exists
-    const currentSession = await getSession()
+    if (isRateLimitedByDb) {
+      return NextResponse.json(
+        { success: false, message: 'Rate limit exceeded. Maximum 3 transmission requests per hour.' },
+        { status: 429 }
+      )
+    }
+
+    // Preserve existing teamName if active session exists
+    const currentSession = await getSession().catch(() => null)
     const teamName = currentSession?.teamName
-    const password = currentSession?.password
 
     // Set user session in cookies (log them in / sync session)
-    const userId = await setSession(name, email, teamName, password)
+    const userId = await setSession(name, email, teamName).catch((err) => {
+      console.error('setSession error in send route:', err)
+      return crypto.randomUUID()
+    })
 
     // Generate unique recovery key using CSPRNG
     let recoveryKey = ''
@@ -111,12 +122,20 @@ export async function POST(request: NextRequest) {
       recoveryKey = `NULL-PLAGAS-${randomCode}`
 
       if (isDbAvailable) {
-        const existing = await db
-          .select()
-          .from(emailTransmissions)
-          .where(eq(emailTransmissions.recoveryKey, recoveryKey))
-        if (existing.length === 0) {
-          isUnique = true
+        try {
+          const existing = await db
+            .select()
+            .from(emailTransmissions)
+            .where(eq(emailTransmissions.recoveryKey, recoveryKey))
+          if (existing.length === 0) {
+            isUnique = true
+          }
+        } catch (dbErr) {
+          console.error('Database error checking recovery key uniqueness:', dbErr)
+          const existing = Array.from(mockTransmissions.values()).find(
+            t => t.recoveryKey === recoveryKey
+          )
+          if (!existing) isUnique = true
         }
       } else {
         const existing = Array.from(mockTransmissions.values()).find(
@@ -157,32 +176,40 @@ export async function POST(request: NextRequest) {
     }
 
     if (isDbAvailable) {
-      await db.insert(emailTransmissions).values({
-        id: transmissionId,
-        name,
-        email,
-        sector,
-        stageId: 2,
-        answer: 'PLAGAS',
-        recoveryKey,
-        isVerified: false,
-        sentAt: newRecord.sentAt,
-        createdAt: newRecord.createdAt,
-        updatedAt: newRecord.updatedAt,
-        deliveryStatus: 'queued',
-        deliveryError: null,
-      })
-    } else {
-      mockTransmissions.set(transmissionId, newRecord)
+      try {
+        await db.insert(emailTransmissions).values({
+          id: transmissionId,
+          name,
+          email,
+          sector,
+          stageId: 2,
+          answer: 'PLAGAS',
+          recoveryKey,
+          isVerified: false,
+          sentAt: newRecord.sentAt,
+          createdAt: newRecord.createdAt,
+          updatedAt: newRecord.updatedAt,
+          deliveryStatus: 'queued',
+          deliveryError: null,
+        })
+      } catch (dbErr) {
+        console.error('Database insert error in transmissions/send:', dbErr)
+      }
     }
+    mockTransmissions.set(transmissionId, newRecord)
 
     // Compile email HTML & Text
-    const emailElement = React.createElement(DeadlightTransmissionEmail, {
-      name,
-      sector,
-      recoveryKey,
-    })
-    const emailHtml = await render(emailElement)
+    let emailHtml = ''
+    try {
+      const emailElement = React.createElement(DeadlightTransmissionEmail, {
+        name,
+        sector,
+        recoveryKey,
+      })
+      emailHtml = await render(emailElement)
+    } catch (renderErr) {
+      console.error('Failed to render React Email element:', renderErr)
+    }
     const emailText = `
 PROJECT NULL // INTERCEPTED DATA PACKETS // SITE KENNEDY
 ----------------------------------------------------------------------

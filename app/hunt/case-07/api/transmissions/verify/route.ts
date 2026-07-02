@@ -33,46 +33,53 @@ export async function POST(request: NextRequest) {
 
     const cleanedKey = recoveryKey.trim().toUpperCase()
 
+    let record: any = null
+
     if (isDbAvailable) {
-      const records = await db
-        .select()
-        .from(emailTransmissions)
-        .where(eq(emailTransmissions.recoveryKey, cleanedKey))
-      
-      const record = records[0]
-      if (!record) {
-        return NextResponse.json({ success: false, message: 'Invalid recovery key.' }, { status: 404 })
+      try {
+        const records = await db
+          .select()
+          .from(emailTransmissions)
+          .where(eq(emailTransmissions.recoveryKey, cleanedKey))
+        record = records[0]
+      } catch (dbErr) {
+        console.error('Database select error in verify route:', dbErr)
       }
+    }
 
-      await db
-        .update(emailTransmissions)
-        .set({
-          isVerified: true,
-          verifiedAt: new Date(),
-          updatedAt: new Date(),
-        })
-        .where(eq(emailTransmissions.id, record.id))
-
-      return NextResponse.json({ success: true })
-    } else {
-      // Offline/Mock store search
-      const record = Array.from(mockTransmissions.values()).find(
+    if (!record) {
+      record = Array.from(mockTransmissions.values()).find(
         t => t.recoveryKey === cleanedKey
       )
-
-      if (!record) {
-        return NextResponse.json({ success: false, message: 'Invalid recovery key.' }, { status: 404 })
-      }
-
-      mockTransmissions.set(record.id, {
-        ...record,
-        isVerified: true,
-        verifiedAt: new Date(),
-        updatedAt: new Date(),
-      })
-
-      return NextResponse.json({ success: true })
     }
+
+    if (!record) {
+      return NextResponse.json({ success: false, message: 'Invalid recovery key.' }, { status: 404 })
+    }
+
+    if (isDbAvailable) {
+      try {
+        await db
+          .update(emailTransmissions)
+          .set({
+            isVerified: true,
+            verifiedAt: new Date(),
+            updatedAt: new Date(),
+          })
+          .where(eq(emailTransmissions.id, record.id))
+      } catch (dbErr) {
+        console.error('Database update error in verify route:', dbErr)
+      }
+    }
+
+    mockTransmissions.set(record.id, {
+      ...record,
+      isVerified: true,
+      verifiedAt: new Date(),
+      updatedAt: new Date(),
+    })
+
+    return NextResponse.json({ success: true })
   } catch (error: any) {
     console.error('Verify API error:', error)
     return NextResponse.json(

@@ -63,19 +63,23 @@ export async function POST(request: NextRequest) {
     let record: any = null
 
     if (isDbAvailable) {
-      const records = await db
-        .select()
-        .from(emailTransmissions)
-        .where(eq(emailTransmissions.email, cleanedEmail))
-        .orderBy(desc(emailTransmissions.sentAt))
-        .limit(1)
-      
-      record = records[0]
-    } else {
+      try {
+        const records = await db
+          .select()
+          .from(emailTransmissions)
+          .where(eq(emailTransmissions.email, cleanedEmail))
+          .orderBy(desc(emailTransmissions.sentAt))
+          .limit(1)
+        record = records[0]
+      } catch (dbErr) {
+        console.error('Database query error in resend route:', dbErr)
+      }
+    }
+
+    if (!record) {
       const mockRecords = Array.from(mockTransmissions.values())
         .filter(t => t.email === cleanedEmail)
         .sort((a, b) => b.sentAt.getTime() - a.sentAt.getTime())
-      
       record = mockRecords[0]
     }
 
@@ -110,12 +114,18 @@ export async function POST(request: NextRequest) {
     const lastResentAt = new Date()
 
     // Render email template
-    const emailElement = React.createElement(DeadlightTransmissionEmail, {
-      name: record.name,
-      sector: record.sector,
-      recoveryKey: record.recoveryKey,
-    })
-    const emailHtml = await render(emailElement)
+    let emailHtml = ''
+    try {
+      const emailElement = React.createElement(DeadlightTransmissionEmail, {
+        name: record.name,
+        sector: record.sector,
+        recoveryKey: record.recoveryKey,
+      })
+      emailHtml = await render(emailElement)
+    } catch (renderErr) {
+      console.error('Failed to render React Email template in resend route:', renderErr)
+    }
+
     const emailText = `
 PROJECT NULL // INTERCEPTED DATA PACKETS // SITE KENNEDY (RESEND)
 ----------------------------------------------------------------------
@@ -183,26 +193,30 @@ PROJECT NULL // SITE KENNEDY COMMAND HQ // 1996
 
     // Update resend tracking info immediately to queued state
     if (isDbAvailable) {
-      await db
-        .update(emailTransmissions)
-        .set({
-          resendCount: nextResendCount,
-          lastResentAt,
-          deliveryStatus: 'queued',
-          deliveryError: null,
-          updatedAt: new Date(),
-        })
-        .where(eq(emailTransmissions.id, record.id))
-    } else {
-      mockTransmissions.set(record.id, {
-        ...record,
-        resendCount: nextResendCount,
-        lastResentAt,
-        deliveryStatus: 'queued',
-        deliveryError: null,
-        updatedAt: new Date(),
-      })
+      try {
+        await db
+          .update(emailTransmissions)
+          .set({
+            resendCount: nextResendCount,
+            lastResentAt,
+            deliveryStatus: 'queued',
+            deliveryError: null,
+            updatedAt: new Date(),
+          })
+          .where(eq(emailTransmissions.id, record.id))
+      } catch (dbErr) {
+        console.error('Database update error in resend route:', dbErr)
+      }
     }
+
+    mockTransmissions.set(record.id, {
+      ...record,
+      resendCount: nextResendCount,
+      lastResentAt,
+      deliveryStatus: 'queued',
+      deliveryError: null,
+      updatedAt: new Date(),
+    })
 
     // Queue background delivery job asynchronously without awaiting
     queueMailDeliveryJob({
