@@ -15,6 +15,14 @@ if (!dbUrl) {
 
 const sql = neon(dbUrl);
 
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled rejection in seed_questions.js:', reason);
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught exception in seed_questions.js:', err);
+});
+
 async function run() {
   const jsonPath = path.join(__dirname, '../data/questions.json');
   if (!fs.existsSync(jsonPath)) {
@@ -35,7 +43,8 @@ async function run() {
   let inserted = 0;
   let updated = 0;
 
-  for (const q of questions) {
+  for (let i = 0; i < questions.length; i++) {
+    const q = questions[i];
     const { caseId, puzzleKey, question, answer } = q;
     
     if (!caseId || !puzzleKey || !question || answer === undefined) {
@@ -43,24 +52,33 @@ async function run() {
       continue;
     }
 
-    const existing = await sql`
-      SELECT id FROM case_questions 
-      WHERE case_id = ${caseId} AND puzzle_key = ${puzzleKey};
-    `;
-
-    if (existing.length > 0) {
-      await sql`
-        UPDATE case_questions 
-        SET question = ${question}, answer = ${answer}
+    try {
+      const existing = await sql`
+        SELECT id FROM case_questions 
         WHERE case_id = ${caseId} AND puzzle_key = ${puzzleKey};
       `;
-      updated++;
-    } else {
-      await sql`
-        INSERT INTO case_questions (id, case_id, puzzle_key, question, answer)
-        VALUES (gen_random_uuid(), ${caseId}, ${puzzleKey}, ${question}, ${answer});
-      `;
-      inserted++;
+
+      if (existing.length > 0) {
+        await sql`
+          UPDATE case_questions 
+          SET question = ${question}, answer = ${answer}
+          WHERE case_id = ${caseId} AND puzzle_key = ${puzzleKey};
+        `;
+        updated++;
+      } else {
+        await sql`
+          INSERT INTO case_questions (id, case_id, puzzle_key, question, answer)
+          VALUES (gen_random_uuid(), ${caseId}, ${puzzleKey}, ${question}, ${answer});
+        `;
+        inserted++;
+      }
+    } catch (err) {
+      console.error(`Failed at item ${i + 1}/${questions.length} [caseId=${caseId}, puzzleKey=${puzzleKey}]`);
+      throw err;
+    }
+
+    if ((i + 1) % 10 === 0 || i === questions.length - 1) {
+      console.log(`Progress: ${i + 1}/${questions.length}`);
     }
   }
 
