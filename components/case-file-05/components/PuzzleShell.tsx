@@ -67,18 +67,7 @@ export function PuzzleShell({ puzzleId, title, clue, children }: PuzzleShellProp
         </div>
       </div>
 
-      {/* Clue briefing card */}
-      <div className="bg-zinc-950/60 border-l-2 border-emerald-500/80 p-4 rounded-r-md relative overflow-hidden">
-        <div className="absolute top-2 right-3 flex items-center gap-1.5 text-[8px] text-zinc-600 font-bold uppercase tracking-widest select-none">
-          <Terminal size={10} />
-          <span>BRIEFING</span>
-        </div>
-        <div className="text-xs text-zinc-400 leading-relaxed max-w-3xl pr-12 text-left font-mono">
-          <p id={`puzzle-clue-${puzzleId}`} className="text-zinc-300">
-            {clue}
-          </p>
-        </div>
-      </div>
+
 
       {/* Interactive component child container */}
       <div className="py-6 min-h-[200px] border border-zinc-900 bg-zinc-950/20 backdrop-blur-xs rounded-md shadow-inner flex flex-col justify-center">
