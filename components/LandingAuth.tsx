@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { Loader2 } from 'lucide-react';
 
 const schema = z.object({
   name: z.string().min(1, 'Agent designation required'),
@@ -17,12 +18,15 @@ export type AuthFormValues = z.infer<typeof schema>;
 
 interface LandingAuthProps {
   onSubmit: (data: AuthFormValues) => void;
+  isLoading?: boolean;
 }
 
-export default function LandingAuth({ onSubmit }: LandingAuthProps) {
-  const { register, handleSubmit, formState: { errors } } = useForm<AuthFormValues>({
+export default function LandingAuth({ onSubmit, isLoading = false }: LandingAuthProps) {
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<AuthFormValues>({
     resolver: zodResolver(schema)
   });
+
+  const loading = isLoading || isSubmitting;
 
   return (
     <motion.div
@@ -57,6 +61,13 @@ export default function LandingAuth({ onSubmit }: LandingAuthProps) {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
       >
+        {/* Loading Progress Bar at top of parchment card */}
+        {loading && (
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#8B1A1A]/20 overflow-hidden z-40">
+            <div className="w-full h-full bg-[#8B1A1A] animate-[pulse_1s_ease-in-out_infinite]" />
+          </div>
+        )}
+
         {/* Paperclip */}
         <div className="absolute top-2 right-4 w-6 h-16 border-2 border-gray-500/80 rounded-full bg-transparent transform rotate-12 shadow-sm z-20 pointer-events-none" />
         <div className="absolute top-4 right-5 w-4 h-12 border-2 border-gray-500/80 rounded-full bg-transparent transform rotate-12 z-20 pointer-events-none border-t-0" />
@@ -81,7 +92,8 @@ export default function LandingAuth({ onSubmit }: LandingAuthProps) {
               <label className="block font-special-elite text-sm mb-1 font-bold">NAME</label>
               <input
                 {...register("name")}
-                className="w-full bg-transparent border-b-2 border-[#2c1a1a]/40 focus:border-[#8B1A1A] outline-none py-2 font-space-mono text-lg transition-colors"
+                disabled={loading}
+                className="w-full bg-transparent border-b-2 border-[#2c1a1a]/40 focus:border-[#8B1A1A] outline-none py-2 font-space-mono text-lg transition-colors disabled:opacity-60"
                 placeholder="Agent designation..."
                 data-testid="input-name"
               />
@@ -92,7 +104,8 @@ export default function LandingAuth({ onSubmit }: LandingAuthProps) {
               <label className="block font-special-elite text-sm mb-1 font-bold">EMAIL</label>
               <input
                 {...register("email")}
-                className="w-full bg-transparent border-b-2 border-[#2c1a1a]/40 focus:border-[#8B1A1A] outline-none py-2 font-space-mono text-lg transition-colors"
+                disabled={loading}
+                className="w-full bg-transparent border-b-2 border-[#2c1a1a]/40 focus:border-[#8B1A1A] outline-none py-2 font-space-mono text-lg transition-colors disabled:opacity-60"
                 placeholder="Secure email..."
                 data-testid="input-email"
               />
@@ -103,7 +116,8 @@ export default function LandingAuth({ onSubmit }: LandingAuthProps) {
               <label className="block font-special-elite text-sm mb-1 font-bold">TEAM NAME</label>
               <input
                 {...register("teamName")}
-                className="w-full bg-transparent border-b-2 border-[#2c1a1a]/40 focus:border-[#8B1A1A] outline-none py-2 font-space-mono text-lg transition-colors"
+                disabled={loading}
+                className="w-full bg-transparent border-b-2 border-[#2c1a1a]/40 focus:border-[#8B1A1A] outline-none py-2 font-space-mono text-lg transition-colors disabled:opacity-60"
                 placeholder="Team designation..."
                 data-testid="input-team-name"
               />
@@ -115,7 +129,8 @@ export default function LandingAuth({ onSubmit }: LandingAuthProps) {
               <input
                 type="password"
                 {...register("password")}
-                className="w-full bg-transparent border-b-2 border-[#2c1a1a]/40 focus:border-[#8B1A1A] outline-none py-2 font-space-mono text-lg transition-colors"
+                disabled={loading}
+                className="w-full bg-transparent border-b-2 border-[#2c1a1a]/40 focus:border-[#8B1A1A] outline-none py-2 font-space-mono text-lg transition-colors disabled:opacity-60"
                 placeholder="Secure password..."
                 data-testid="input-password"
               />
@@ -125,10 +140,20 @@ export default function LandingAuth({ onSubmit }: LandingAuthProps) {
             <div className="pt-6">
               <button
                 type="submit"
-                className="w-full bg-[#8B1A1A] text-[#e8e0d0] font-special-elite text-xl py-4 uppercase tracking-widest hover:bg-[#5a0c0c] transition-colors relative overflow-hidden group cursor-pointer"
+                disabled={loading}
+                className="w-full bg-[#8B1A1A] text-[#e8e0d0] font-special-elite text-xl py-4 uppercase tracking-widest hover:bg-[#5a0c0c] disabled:bg-[#5a0c0c]/85 disabled:cursor-not-allowed transition-all duration-300 relative overflow-hidden group cursor-pointer flex items-center justify-center gap-3"
                 data-testid="button-enter"
               >
-                <span className="relative z-10 block group-hover:scale-105 transition-transform font-bold">ENTER</span>
+                {loading ? (
+                  <span className="relative z-10 flex items-center justify-center gap-3 font-bold text-lg tracking-widest text-[#e8e0d0]">
+                    <Loader2 className="w-5 h-5 animate-spin text-[#e8e0d0]" />
+                    <span className="animate-pulse">AUTHENTICATING...</span>
+                  </span>
+                ) : (
+                  <span className="relative z-10 block group-hover:scale-105 transition-transform font-bold">
+                    ENTER
+                  </span>
+                )}
                 <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8L3N2Zz4=')] opacity-30 mix-blend-overlay"></div>
               </button>
             </div>
