@@ -219,6 +219,8 @@ export async function POST(request: NextRequest) {
         'light leads only the worthy home',
         'emoh yhtrow eht ylno sdael thgil'
       )
+    } else if (normalizedKey === 'audio_game') {
+      aliases.push('crimson', 'resonance')
     }
 
     // Special Case 8 handling
