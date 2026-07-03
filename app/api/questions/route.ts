@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db, isDbAvailable } from '@/db'
 import { caseQuestions } from '@/db/schema'
-import { eq, and, or } from 'drizzle-orm'
+import { eq, and } from 'drizzle-orm'
 
 function normalize(s: string): string {
   if (!s) return "";
@@ -171,10 +171,7 @@ export async function POST(request: NextRequest) {
     }).from(caseQuestions).where(
       and(
         eq(caseQuestions.caseId, caseId),
-        or(
-          eq(caseQuestions.puzzleKey, puzzleKey),
-          eq(caseQuestions.puzzleKey, normalizedKey)
-        )
+        eq(caseQuestions.puzzleKey, normalizedKey)
       )
     )
 
