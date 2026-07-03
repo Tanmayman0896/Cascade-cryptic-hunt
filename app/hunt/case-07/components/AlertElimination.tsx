@@ -16,9 +16,9 @@ interface Alert {
 }
 
 const WAVE_CONFIG = [
-  { duration: 600, spawnRate: 1400, maxAlerts: 6, target: 20, label: 'INITIAL BREACH' },
-  { duration: 600, spawnRate: 1000, maxAlerts: 9, target: 25, label: 'CASCADE FAILURE' },
-  { duration: 600, spawnRate: 800, maxAlerts: 12, target: 30, label: 'FINAL COLLAPSE' },
+  { duration: 100, spawnRate: 1400, maxAlerts: 6, target: 20, label: 'INITIAL BREACH' },
+  { duration: 100, spawnRate: 1000, maxAlerts: 9, target: 25, label: 'CASCADE FAILURE' },
+  { duration: 100, spawnRate: 800, maxAlerts: 12, target: 30, label: 'FINAL COLLAPSE' },
 ]
 
 const SECTORS = [
