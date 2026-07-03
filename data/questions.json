@@ -361,21 +361,9 @@
   },
   {
     "caseId": "05",
-    "puzzleKey": "deep-blue",
-    "question": "World chess champion defeated by Deep Blue computer in 1997.",
-    "answer": "kasparov"
-  },
-  {
-    "caseId": "05",
     "puzzleKey": "deep_blue",
     "question": "IBM Deep Blue chess champion name",
     "answer": "GARRY KASPAROV"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "demon-core",
-    "question": "6.2 kg subcritical plutonium mass involved in Los Alamos criticality accidents.",
-    "answer": "plutonium"
   },
   {
     "caseId": "05",
@@ -385,21 +373,9 @@
   },
   {
     "caseId": "05",
-    "puzzleKey": "golden-record",
-    "question": "Astronomer who spearheaded the Voyager Golden Record committee.",
-    "answer": "sagan"
-  },
-  {
-    "caseId": "05",
     "puzzleKey": "golden_record",
     "question": "Ann Druyan voyager record husband name",
     "answer": "CARL SAGAN"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "kryptos-cipher",
-    "question": "Kryptos sculpture section K2 decrypted city clue.",
-    "answer": "berlin"
   },
   {
     "caseId": "05",
@@ -409,21 +385,9 @@
   },
   {
     "caseId": "05",
-    "puzzleKey": "math-trick",
-    "question": "Magic number 0x5f3759df decimal digit sum ultimate answer.",
-    "answer": "42"
-  },
-  {
-    "caseId": "05",
     "puzzleKey": "math_trick",
     "question": "Convert hex 0x5f3759df to decimal and sum the digits",
     "answer": "42"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "poe-cipher",
-    "question": "Solver who decrypted the final Poe cryptogram in 2000.",
-    "answer": "gil broza"
   },
   {
     "caseId": "05",
@@ -433,21 +397,9 @@
   },
   {
     "caseId": "05",
-    "puzzleKey": "taured-passport",
-    "question": "Mysterious Haneda Airport traveler country of origin in 1954.",
-    "answer": "taured"
-  },
-  {
-    "caseId": "05",
     "puzzleKey": "taured_passport",
     "question": "Mystery passport country name",
     "answer": "TAURED"
-  },
-  {
-    "caseId": "05",
-    "puzzleKey": "wilhelm-scream",
-    "question": "Famous sound effect named after Private character in 1953 western.",
-    "answer": "wilhelm"
   },
   {
     "caseId": "05",
@@ -463,19 +415,19 @@
   },
   {
     "caseId": "07",
-    "puzzleKey": "behavioral-match",
+    "puzzleKey": "behavioral_match",
     "question": "Decontamination clearance passphrase derived from network diagnostic node status",
     "answer": "LURE"
   },
   {
     "caseId": "07",
-    "puzzleKey": "black-symbol",
+    "puzzleKey": "black_symbol",
     "question": "Eliminated black symbol alert override key",
     "answer": "REPLACE"
   },
   {
     "caseId": "07",
-    "puzzleKey": "cipher-answer",
+    "puzzleKey": "cipher_answer",
     "question": "Vigenère decrypt ciphertext ZXHHPZM with key SHIELD",
     "answer": "REPLACE"
   },
@@ -487,7 +439,7 @@
   },
   {
     "caseId": "07",
-    "puzzleKey": "final-transmission",
+    "puzzleKey": "final_transmission",
     "question": "Operation Deadlight final transmission classification key",
     "answer": "AETHERION"
   },
@@ -499,19 +451,19 @@
   },
   {
     "caseId": "07",
-    "puzzleKey": "identity-distortion",
+    "puzzleKey": "identity_distortion",
     "question": "Reconstructed infected host identity code",
     "answer": "INFILTRATE"
   },
   {
     "caseId": "07",
-    "puzzleKey": "interlude-1",
+    "puzzleKey": "interlude_1",
     "question": "Logistics system diagnostic anagram: R A U N Q T I N A E",
     "answer": "QUARANTINE"
   },
   {
     "caseId": "07",
-    "puzzleKey": "interlude-2",
+    "puzzleKey": "interlude_2",
     "question": "Logistics system diagnostic 8-bit ASCII binary sequence",
     "answer": "SURVIVAL"
   },
@@ -523,13 +475,13 @@
   },
   {
     "caseId": "07",
-    "puzzleKey": "memory-corruption",
+    "puzzleKey": "memory_corruption",
     "question": "Corrupted neural memory purge passphrase",
     "answer": "OUTBREAK"
   },
   {
     "caseId": "07",
-    "puzzleKey": "packet-answer",
+    "puzzleKey": "packet_answer",
     "question": "Raw binary frame hex dump payload decoder",
     "answer": "SHIELD"
   },
@@ -541,7 +493,7 @@
   },
   {
     "caseId": "07",
-    "puzzleKey": "quarantine-registration",
+    "puzzleKey": "quarantine_registration",
     "question": "Quarantine transmission registration validation key",
     "answer": "PLAGAS"
   },
