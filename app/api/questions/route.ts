@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db, isDbAvailable } from '@/db'
 import { caseQuestions } from '@/db/schema'
-import { eq, and } from 'drizzle-orm'
+import { eq, and, or } from 'drizzle-orm'
 
 function normalize(s: string): string {
   if (!s) return "";
@@ -141,14 +141,6 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const clientIp = request.headers.get('x-forwarded-for') || 'anonymous';
-  if (checkRateLimit(clientIp)) {
-    return NextResponse.json(
-      { success: false, error: 'Too many answer attempts. Please wait a minute.' },
-      { status: 429 }
-    );
-  }
-
   if (!isDbAvailable) {
     return NextResponse.json({ success: false, error: 'Database not available' }, { status: 503 })
   }
@@ -161,6 +153,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'Invalid parameters' }, { status: 400 })
     }
 
+    const isUiPuzzle = caseId === '01' || caseId === '02';
+    if (!isUiPuzzle) {
+      const clientIp = request.headers.get('x-forwarded-for') || 'anonymous';
+      if (checkRateLimit(clientIp)) {
+        return NextResponse.json(
+          { success: false, error: 'Too many answer attempts. Please wait a minute.' },
+          { status: 429 }
+        );
+      }
+    }
+
     const normalizedKey = puzzleKey.replaceAll("-", "_");
 
     const rows = await db.select({
@@ -168,7 +171,10 @@ export async function POST(request: NextRequest) {
     }).from(caseQuestions).where(
       and(
         eq(caseQuestions.caseId, caseId),
-        eq(caseQuestions.puzzleKey, normalizedKey)
+        or(
+          eq(caseQuestions.puzzleKey, puzzleKey),
+          eq(caseQuestions.puzzleKey, normalizedKey)
+        )
       )
     )
 
@@ -202,12 +208,29 @@ export async function POST(request: NextRequest) {
       aliases.push('carnival 17', 'carnival17', 'reveal')
     } else if (normalizedKey === 'golden_record') {
       fuzzyThreshold = 0.8
+    } else if (normalizedKey === 'chronicle_sort') {
+      aliases.push(
+        'hwtoll', 
+        'awwstl', 
+        'llotwh', 
+        'ltswwa', 
+        '0,1,2,3,4,5', 
+        '012345',
+        'light leads only the worthy home',
+        'emoh yhtrow eht ylno sdael thgil'
+      )
+    } else if (normalizedKey === 'audio_game') {
+      aliases.push('crimson', 'resonance')
     }
 
     // Special Case 8 handling
     if (caseId === '08') {
-      if (normalizedKey === 'p1') {
-        aliases.push('14 october 1972', '14-oct-1972')
+      if (normalizedKey === 'p1' || normalizedKey === 'dossier_1') {
+        aliases.push('14 october 1972', '14-oct-1972', '14 oct 1972', 'october 14 1972', '14/10/1972', '14-10-1972')
+      } else if (normalizedKey === 'p5' || normalizedKey === 'dossier_5') {
+        aliases.push('the null room', 'null room')
+      } else if (normalizedKey === 'p6' || normalizedKey === 'dossier_6') {
+        aliases.push('null-gate', 'null gate', 'nullgate')
       }
     }
 

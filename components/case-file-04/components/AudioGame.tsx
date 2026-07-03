@@ -224,7 +224,7 @@ export default function AudioGame({
         }
       } else {
         playBeep(250, 0.25);
-        setFeedback("ACCESS DECRPTION FAILED. SEQUENCE MISMATCH.");
+        setFeedback("ACCESS DECRYPTION FAILED. SEQUENCE MISMATCH.");
         if (onFailed) {
           onFailed();
         }
@@ -232,7 +232,7 @@ export default function AudioGame({
     } catch (err) {
       console.error(err);
       playBeep(250, 0.25);
-      setFeedback("ACCESS DECRPTION FAILED. CONNECTION ERROR.");
+      setFeedback("ACCESS DECRYPTION FAILED. CONNECTION ERROR.");
       if (onFailed) {
         onFailed();
       }

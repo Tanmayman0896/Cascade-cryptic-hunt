@@ -9,35 +9,35 @@ import gsap from "gsap";
 
 const SYMBOL_DETAILS: Record<string, { title: string; desc: string }> = {
   "01": {
-    title: "The Aether Glyph",
+    title: "The Pharaoh's Curse",
     desc: "Recovered from the primary server breach. Its geometric lines align perfectly with archaic celestial mapping ciphers.",
   },
   "02": {
-    title: "The Ouroboros Node",
+    title: "The Lost Chronicle",
     desc: "Extracted from the encrypted transmission logs. Represents infinite recursion, suggesting a self-replicating loop in the network core.",
   },
   "03": {
-    title: "The Chronos Gate",
+    title: "The Dying Flame",
     desc: "Obtained from the metadata of the corrupted time-stamped files. A representation of temporal fragmentation.",
   },
   "04": {
-    title: "The Hecate Sigil",
+    title: "The Crimson Carnival",
     desc: "Discovered within the deep web darknet handshake protocols. Points to three intersecting nodes in the darknet routing table.",
   },
   "05": {
-    title: "The Nemesis Prism",
+    title: "The Blue Ledger",
     desc: "Retrieved from the memory dump of the compromised firewall. Refracts incoming security scans into harmless noise.",
   },
   "06": {
-    title: "The Void Catalyst",
+    title: "The Override Sequence",
     desc: "Found embedded in the binary structure of the zero-day exploit. Synthesizes empty space to absorb memory buffer overflows.",
   },
   "07": {
-    title: "The Aetherion Cipher",
+    title: "Operation Deadlight",
     desc: "Decoded from the final radio transmission. The primary key used to lock Operation Deadlight's communication array.",
   },
   "08": {
-    title: "The Singularity Core",
+    title: "The Broken Deck",
     desc: "Acquired from the core reactor console before collapse. The ultimate symbol that binds all other network nodes together.",
   },
 };
@@ -199,35 +199,22 @@ export default function HuntPage() {
     }
   }, [completedList]);
 
-  // GSAP animation for the unlock overlay intro
+  // Minimal GSAP animation for the unlock overlay intro
   useEffect(() => {
     if (!showUnlockOverlay || !solvedCaseForAnim || animStep !== "intro") return;
 
-    // Pulse and loop the background scanner line
+    // Clean minimal entrance of the modal card without 3D tilt or heavy bounce
     gsap.fromTo(
-      ".overlay-scanner-line",
-      { top: "0%" },
-      { top: "100%", repeat: -1, yoyo: true, duration: 4, ease: "sine.inOut" }
+      ".stacked-modal-card",
+      { scale: 0.92, opacity: 0, y: 15 },
+      { scale: 1, opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }
     );
 
-    // Initial scale and rotation bounce of center symbol
+    // Subtle entrance of the center symbol
     gsap.fromTo(
       ".center-symbol-container",
-      { scale: 0, opacity: 0, rotation: -45 },
-      { scale: 1, opacity: 1, rotation: 0, duration: 1.2, ease: "elastic.out(1, 0.6)" }
-    );
-
-    // Fade in text blocks and decorative HUD texts
-    gsap.fromTo(
-      ".diagnostic-text",
-      { opacity: 0, y: 10 },
-      { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, ease: "power2.out" }
-    );
-
-    gsap.fromTo(
-      ".text-block > *",
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.6, stagger: 0.2, ease: "power2.out", delay: 0.3 }
+      { scale: 0.85, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.3, delay: 0.1, ease: "power2.out" }
     );
   }, [showUnlockOverlay, solvedCaseForAnim, animStep]);
 
@@ -240,14 +227,14 @@ export default function HuntPage() {
     // Start flying step
     setAnimStep("fly");
 
-    // Fade out overlay content quickly before flight begins
-    gsap.to(".text-block, .diagnostic-text, .overlay-scanner-line", {
+    // Fade out overlay card content quickly
+    gsap.to(".stacked-modal-card-content", {
       opacity: 0,
-      duration: 0.3,
+      duration: 0.2,
       ease: "power2.out",
     });
 
-    // Give DOM 150ms to render the inventory panel and target slot at its correct layout position
+    // Give DOM 100ms to render the inventory panel and target slot
     setTimeout(() => {
       const centralEl = document.querySelector(".center-symbol-img");
       const targetSlotEl = document.getElementById(`inventory-slot-${solvedCaseForAnim}`);
@@ -274,37 +261,22 @@ export default function HuntPage() {
           scale: 1,
         });
 
-        // Translate flyer to the target slot in the top-left inventory, scale down to fit
+        // Minimal direct translate flyer to the target slot
         gsap.to(flyerRef.current, {
           x: rectEnd.left,
           y: rectEnd.top,
           width: rectEnd.width,
           height: rectEnd.height,
-          opacity: 0.8,
-          duration: 1.0,
-          ease: "power3.inOut",
+          opacity: 0.9,
+          duration: 0.55,
+          ease: "power2.inOut",
           onComplete: () => {
-            // Animate target slot pulse on arrival
+            // Subtle slot pulse on arrival
             gsap.fromTo(
               targetSlotEl,
               { scale: 1 },
-              { scale: 1.15, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out" }
+              { scale: 1.1, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.out" }
             );
-
-            // Trigger visual burst ring expanding from slot center
-            const burstEl = document.createElement("div");
-            burstEl.className = "absolute inset-0 rounded-xl border-2 border-cyan-400 pointer-events-none scale-100 opacity-100 z-10";
-            targetSlotEl.appendChild(burstEl);
-            
-            gsap.to(burstEl, {
-              scale: 1.8,
-              opacity: 0,
-              duration: 0.8,
-              ease: "power2.out",
-              onComplete: () => {
-                burstEl.remove();
-              }
-            });
 
             // Cleanup overlay and flag
             setAnimStep("done");
@@ -313,7 +285,7 @@ export default function HuntPage() {
           }
         });
       }
-    }, 150);
+    }, 100);
   };
 
   const caseFiles = Array.from({ length: 9 }, (_, i) => {
@@ -530,80 +502,51 @@ export default function HuntPage() {
         })()}
       </div>
 
-      {/* Cinematic Symbol Unlock Overlay */}
+      {/* Minimal Symbol Unlock Overlay (Stacked upon the Hunt page without background blur) */}
       {showUnlockOverlay && solvedCaseForAnim && (
         <div 
-          className="fixed inset-0 z-45 flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat overflow-hidden select-none animate-[fadeIn_0.5s_ease-out]"
+          className="fixed inset-0 z-45 flex flex-col items-center justify-center p-4 overflow-hidden select-none animate-[fadeIn_0.2s_ease-out]"
         >
-          <Image
-            src="/Hunt/Background-Image.avif"
-            alt="Background"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover pointer-events-none -z-10"
-          />
-          {/* Premium dark cinematic overlays */}
-          <div className="absolute inset-0 bg-black/55 pointer-events-none z-0" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.7)_100%)] pointer-events-none z-0" />
-
-          {/* Animated Background Scanner Line */}
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.5)] pointer-events-none overlay-scanner-line z-0" />
-          
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.08)_0%,transparent_70%)] pointer-events-none z-0" />
-
-          {/* Diagnostic Overlay Texts */}
-          <div className="absolute top-8 left-8 font-mono text-[10px] tracking-[0.25em] text-zinc-500 hidden md:block">
-            <p className="diagnostic-text">SYS.LOC: /HUNT/DECRYPT</p>
-            <p className="diagnostic-text">STABILITY_INDEX: 99.4%</p>
-          </div>
-          <div className="absolute top-8 right-8 font-mono text-[10px] tracking-[0.25em] text-cyan-500/60 hidden md:block">
-            <p className="diagnostic-text">STATUS: DECRYPTION_SUCCESS</p>
-          </div>
-
-          <div className="relative flex flex-col items-center max-w-lg px-6 text-center">
-            {/* Hologram Rings */}
-            <div className="absolute -inset-10 flex items-center justify-center pointer-events-none opacity-20 z-0">
-              <svg className="w-72 h-72 animate-[spin_40s_linear_infinite]" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="#06b6d4" strokeWidth="0.5" strokeDasharray="5, 3" />
-                <circle cx="50" cy="50" r="40" fill="none" stroke="#06b6d4" strokeWidth="0.25" />
-              </svg>
-              <svg className="absolute w-80 h-80 animate-[spin_20s_linear_infinite_reverse]" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="48" fill="none" stroke="#06b6d4" strokeWidth="0.5" strokeDasharray="15, 8" />
-              </svg>
+          {/* Minimal Glass Card */}
+          <div className="stacked-modal-card relative max-w-sm sm:max-w-md w-full bg-zinc-950/95 border border-amber-500/40 rounded-2xl p-6 md:p-7 shadow-[0_12px_40px_rgba(0,0,0,0.9),_0_0_25px_rgba(245,158,11,0.2)] flex flex-col items-center text-center">
+            {/* Header Status */}
+            <div className="w-full flex items-center justify-between font-mono text-[9px] sm:text-[10px] tracking-[0.2em] text-amber-400/80 border-b border-zinc-800/80 pb-2.5 mb-5">
+              <span>RECORD // CASE {solvedCaseForAnim}</span>
+              <span className="text-emerald-400 font-bold">DECRYPTED</span>
             </div>
 
-            {/* Central Symbol */}
-            <div className="relative w-44 h-44 md:w-52 md:h-52 z-10 flex items-center justify-center bg-cyan-950/10 border border-cyan-500/20 rounded-2xl backdrop-blur-sm p-6 shadow-[0_0_50px_rgba(6,182,212,0.1)] center-symbol-container overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-cyan-500/[0.05]" />
-              <Image
-                src={`/Symbols/cf${parseInt(solvedCaseForAnim, 10)}.avif`}
-                alt="Recovered Symbol"
-                width={200}
-                height={200}
-                className="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] center-symbol-img"
-              />
-            </div>
+            <div className="stacked-modal-card-content relative flex flex-col items-center w-full">
+              {/* Central Symbol Container */}
+              <div className="relative w-28 h-28 md:w-32 md:h-32 z-10 flex items-center justify-center bg-amber-950/20 border border-amber-500/30 rounded-xl p-4 shadow-[0_0_25px_rgba(245,158,11,0.2)] center-symbol-container mb-4">
+                <Image
+                  src={`/Symbols/cf${parseInt(solvedCaseForAnim, 10)}.avif`}
+                  alt="Recovered Symbol"
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(245,158,11,0.65)] center-symbol-img"
+                />
+              </div>
 
-            {/* Title & Info */}
-            <div className="mt-8 z-10 text-block">
-              <h2 className="font-mono text-xs md:text-sm tracking-[0.3em] text-cyan-400 uppercase mb-2">
-                ◈ CASE FILE {solvedCaseForAnim} SECURED ◈
-              </h2>
-              <h3 className="font-serif text-2xl md:text-3xl text-zinc-100 tracking-wider mb-4">
-                {SYMBOL_DETAILS[solvedCaseForAnim]?.title}
-              </h3>
-              <p className="font-mono text-[11px] md:text-xs text-zinc-400 tracking-wide leading-relaxed max-w-sm mb-8">
-                {SYMBOL_DETAILS[solvedCaseForAnim]?.desc}
-              </p>
+              {/* Title & Info */}
+              <div className="z-10 flex flex-col items-center w-full">
+                <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] text-amber-300 uppercase mb-1 px-2.5 py-0.5 bg-amber-950/60 border border-amber-500/30 rounded-md">
+                  CASE FILE {solvedCaseForAnim} SECURED
+                </span>
+                <h3 className="font-serif text-xl sm:text-2xl text-zinc-100 tracking-wider my-2">
+                  {SYMBOL_DETAILS[solvedCaseForAnim]?.title}
+                </h3>
+                <p className="font-mono text-[10px] sm:text-[11px] text-zinc-400 tracking-wide leading-relaxed max-w-xs mb-5">
+                  {SYMBOL_DETAILS[solvedCaseForAnim]?.desc}
+                </p>
 
-              <button
-                onClick={handleStoreSymbol}
-                disabled={animStep === "fly"}
-                className="px-8 py-3 bg-cyan-950/40 hover:bg-cyan-500/20 text-cyan-400 font-mono text-xs tracking-[0.2em] uppercase border border-cyan-500/30 rounded-lg hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300 cursor-pointer disabled:opacity-50"
-              >
-                {animStep === "fly" ? "Recording..." : "Record in Archive"}
-              </button>
+                <button
+                  onClick={handleStoreSymbol}
+                  disabled={animStep === "fly"}
+                  className="w-full sm:w-auto px-6 py-2.5 bg-amber-950/70 hover:bg-amber-500/20 text-amber-300 hover:text-amber-100 font-mono text-xs tracking-[0.15em] uppercase border border-amber-500/40 hover:border-amber-400 rounded-lg shadow-[0_0_15px_rgba(245,158,11,0.25)] transition-all duration-200 cursor-pointer active:scale-95 disabled:opacity-50"
+                >
+                  {animStep === "fly" ? "RECORDING..." : "RECORD IN ARCHIVE HUB"}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -612,8 +555,8 @@ export default function HuntPage() {
       {/* Symbol Detail Inspection Modal */}
       {selectedSymbolCase && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4 select-none animate-[fadeIn_0.3s_ease-out]">
-          <div className="relative max-w-md w-full border border-cyan-500/30 bg-zinc-950/90 rounded-2xl p-6 md:p-8 shadow-[0_0_50px_rgba(6,182,212,0.2)] overflow-hidden animate-[scaleUp_0.3s_ease-out]">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-cyan-500/[0.02] pointer-events-none" />
+          <div className="relative max-w-md w-full border border-amber-500/40 bg-zinc-950/90 rounded-2xl p-6 md:p-8 shadow-[0_0_50px_rgba(245,158,11,0.2)] overflow-hidden animate-[scaleUp_0.3s_ease-out]">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-amber-500/[0.02] pointer-events-none" />
             
             <button
               onClick={() => setSelectedSymbolCase(null)}
@@ -623,18 +566,18 @@ export default function HuntPage() {
             </button>
             
             <div className="flex flex-col items-center text-center">
-              <div className="w-36 h-36 flex items-center justify-center bg-cyan-950/10 border border-cyan-500/10 rounded-xl p-4 mb-6 shadow-inner relative">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-cyan-500/[0.04]" />
+              <div className="w-36 h-36 flex items-center justify-center bg-amber-950/10 border border-amber-500/20 rounded-xl p-4 mb-6 shadow-inner relative">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-amber-500/[0.04]" />
                 <Image
                   src={`/Symbols/cf${parseInt(selectedSymbolCase, 10)}.avif`}
                   alt={`Case ${selectedSymbolCase} Symbol`}
                   width={144}
                   height={144}
-                  className="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(6,182,212,0.4)]"
+                  className="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(245,158,11,0.5)]"
                 />
               </div>
               
-              <span className="font-mono text-[10px] tracking-[0.25em] text-cyan-500 uppercase mb-2">
+              <span className="font-mono text-[10px] tracking-[0.25em] text-amber-400 uppercase mb-2">
                 ◈ RECOVERED SYMBOL 0{parseInt(selectedSymbolCase, 10)} ◈
               </span>
               
@@ -658,7 +601,7 @@ export default function HuntPage() {
       {animStep === "fly" && solvedCaseForAnim && (
         <div
           ref={flyerRef}
-          className="fixed pointer-events-none z-50 rounded-xl border border-cyan-500/50 bg-zinc-950/80 backdrop-blur-md flex items-center justify-center p-3 shadow-[0_0_30px_rgba(6,182,212,0.4)]"
+          className="fixed pointer-events-none z-50 rounded-xl border border-amber-500/50 bg-zinc-950/80 backdrop-blur-md flex items-center justify-center p-3 shadow-[0_0_30px_rgba(245,158,11,0.4)]"
           style={{
             width: "180px",
             height: "180px",
@@ -671,7 +614,7 @@ export default function HuntPage() {
             alt="Flying Symbol"
             width={180}
             height={180}
-            className="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]"
+            className="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(245,158,11,0.6)]"
           />
         </div>
       )}
