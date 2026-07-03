@@ -16,9 +16,9 @@ interface Alert {
 }
 
 const WAVE_CONFIG = [
-  { duration: 75, spawnRate: 1400, maxAlerts: 6, target: 20, label: 'INITIAL BREACH' },
-  { duration: 75, spawnRate: 1000, maxAlerts: 9, target: 25, label: 'CASCADE FAILURE' },
-  { duration: 75, spawnRate: 800, maxAlerts: 12, target: 30, label: 'FINAL COLLAPSE' },
+  { duration: 600, spawnRate: 1400, maxAlerts: 6, target: 20, label: 'INITIAL BREACH' },
+  { duration: 600, spawnRate: 1000, maxAlerts: 9, target: 25, label: 'CASCADE FAILURE' },
+  { duration: 600, spawnRate: 800, maxAlerts: 12, target: 30, label: 'FINAL COLLAPSE' },
 ]
 
 const SECTORS = [
@@ -279,11 +279,9 @@ export function AlertElimination({ onSolved }: { onSolved: () => void }) {
   }, [interludeCooldown])
 
   function handleRetry() {
-    setWave(0)
     setCleared(0)
-    setTotalCleared(0)
     setAlerts([])
-    setTimeLeft(WAVE_CONFIG[0].duration)
+    setTimeLeft(WAVE_CONFIG[wave].duration)
     setStatus('active')
   }
 
@@ -589,10 +587,10 @@ export function AlertElimination({ onSolved }: { onSolved: () => void }) {
       {/* Failed */}
       {status === 'failed' && (
         <div className={styles.alertFailed}>
-          <h3>Site Kennedy has been lost.</h3>
-          <p>Restart containment protocol.</p>
+          <h3>WAVE {wave + 1} TIMEOUT</h3>
+          <p>Restart Wave {wave + 1} containment protocol.</p>
           <button onClick={handleRetry} className={styles.retryBtn}>
-            TRY AGAIN
+            RETRY WAVE {wave + 1}
           </button>
         </div>
       )}
