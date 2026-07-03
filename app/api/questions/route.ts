@@ -141,14 +141,6 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const clientIp = request.headers.get('x-forwarded-for') || 'anonymous';
-  if (checkRateLimit(clientIp)) {
-    return NextResponse.json(
-      { success: false, error: 'Too many answer attempts. Please wait a minute.' },
-      { status: 429 }
-    );
-  }
-
   if (!isDbAvailable) {
     return NextResponse.json({ success: false, error: 'Database not available' }, { status: 503 })
   }
@@ -159,6 +151,17 @@ export async function POST(request: NextRequest) {
 
     if (!caseId || !puzzleKey || typeof answer !== 'string' || answer.length > 500) {
       return NextResponse.json({ success: false, error: 'Invalid parameters' }, { status: 400 })
+    }
+
+    const isUiPuzzle = caseId === '01' || caseId === '02';
+    if (!isUiPuzzle) {
+      const clientIp = request.headers.get('x-forwarded-for') || 'anonymous';
+      if (checkRateLimit(clientIp)) {
+        return NextResponse.json(
+          { success: false, error: 'Too many answer attempts. Please wait a minute.' },
+          { status: 429 }
+        );
+      }
     }
 
     const normalizedKey = puzzleKey.replaceAll("-", "_");
