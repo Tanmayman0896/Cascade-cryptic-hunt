@@ -989,6 +989,21 @@ const ELEMENT_ICONS: Record<string, string> = {
   AETHER: "✨ AETHER"
 };
 
+const SPELL_RECIPES: Record<string, string[]> = {
+  "FIREBALL": ["AURA", "IGNIS"],
+  "MUD SHIELD": ["AQUA", "TERRA"],
+  "SEALING PORTAL": ["AETHER", "IGNIS", "TERRA"],
+  "LIGHTNING STRIKE": ["AETHER", "AURA", "IGNIS"],
+  "ICE WALL": ["AQUA", "AURA"],
+  "ALCHEMICAL ELIXIR": ["AETHER", "AQUA", "TERRA"]
+};
+
+const SEAL_NAMES: Record<string, string> = {
+  "𓂀": "Eye of Horus",
+  "𓆣": "Scarab Beetle",
+  "𓆗": "Uraeus Cobra"
+};
+
 interface SpellMakingPuzzleProps {
   onSolve: () => void;
 }
@@ -1009,7 +1024,7 @@ function SpellMakingPuzzle({ onSolve }: SpellMakingPuzzleProps) {
             .map((q: any) => {
               let name = q.question;
               let description = `Combine elements to cast ${q.question.toLowerCase()}`;
-              let ingredients = q.answer ? q.answer.split(",") : [];
+              let ingredients = SPELL_RECIPES[q.question.toUpperCase()] || [];
               try {
                 const parsed = JSON.parse(q.question);
                 name = parsed.name || name;
@@ -1487,7 +1502,6 @@ function SealRevealPuzzle({ onSolve }: SealRevealPuzzleProps) {
           const items = data.questions
             .filter((q: any) => q.puzzleKey.startsWith("seal_reveal_"))
             .map((q: any) => {
-              let name = q.answer || "";
               let char = "";
               let desc = q.question;
               
@@ -1499,6 +1513,8 @@ function SealRevealPuzzle({ onSolve }: SealRevealPuzzleProps) {
                   char = q.question.trim().slice(-1);
                 }
               }
+              
+              let name = SEAL_NAMES[char] || q.answer || "";
               
               try {
                 const parsed = JSON.parse(q.question);
