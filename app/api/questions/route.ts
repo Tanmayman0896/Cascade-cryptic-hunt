@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db, isDbAvailable } from '@/db'
 import { caseQuestions } from '@/db/schema'
-import { eq, and } from 'drizzle-orm'
+import { eq, and, or } from 'drizzle-orm'
 
 function normalize(s: string): string {
   if (!s) return "";
@@ -168,7 +168,10 @@ export async function POST(request: NextRequest) {
     }).from(caseQuestions).where(
       and(
         eq(caseQuestions.caseId, caseId),
-        eq(caseQuestions.puzzleKey, normalizedKey)
+        or(
+          eq(caseQuestions.puzzleKey, puzzleKey),
+          eq(caseQuestions.puzzleKey, normalizedKey)
+        )
       )
     )
 
@@ -202,12 +205,27 @@ export async function POST(request: NextRequest) {
       aliases.push('carnival 17', 'carnival17', 'reveal')
     } else if (normalizedKey === 'golden_record') {
       fuzzyThreshold = 0.8
+    } else if (normalizedKey === 'chronicle_sort') {
+      aliases.push(
+        'hwtoll', 
+        'awwstl', 
+        'llotwh', 
+        'ltswwa', 
+        '0,1,2,3,4,5', 
+        '012345',
+        'light leads only the worthy home',
+        'emoh yhtrow eht ylno sdael thgil'
+      )
     }
 
     // Special Case 8 handling
     if (caseId === '08') {
-      if (normalizedKey === 'p1') {
-        aliases.push('14 october 1972', '14-oct-1972')
+      if (normalizedKey === 'p1' || normalizedKey === 'dossier_1') {
+        aliases.push('14 october 1972', '14-oct-1972', '14 oct 1972', 'october 14 1972', '14/10/1972', '14-10-1972')
+      } else if (normalizedKey === 'p5' || normalizedKey === 'dossier_5') {
+        aliases.push('the null room', 'null room')
+      } else if (normalizedKey === 'p6' || normalizedKey === 'dossier_6') {
+        aliases.push('null-gate', 'null gate', 'nullgate')
       }
     }
 

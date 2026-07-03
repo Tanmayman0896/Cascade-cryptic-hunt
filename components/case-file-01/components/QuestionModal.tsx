@@ -564,6 +564,39 @@ const WORD_SEARCH_GRID = [
   ['A', 'B', 'C', 'D', 'E', 'D', 'E', 'A', 'T', 'H', 'F', 'G']
 ];
 
+function findWordCoordinates(word: string, grid: string[][]): string[] | null {
+  const R = grid.length;
+  const C = grid[0].length;
+  const wordLen = word.length;
+  const dr = [0, 0, 1, -1, 1, 1, -1, -1];
+  const dc = [1, -1, 0, 0, 1, -1, 1, -1];
+  
+  for (let r = 0; r < R; r++) {
+    for (let c = 0; c < C; c++) {
+      if (grid[r][c] === word[0]) {
+        for (let dir = 0; dir < 8; dir++) {
+          const coords: string[] = [];
+          let match = true;
+          for (let i = 0; i < wordLen; i++) {
+            const nr = r + dr[dir] * i;
+            const nc = c + dc[dir] * i;
+            if (nr >= 0 && nr < R && nc >= 0 && nc < C && grid[nr][nc] === word[i]) {
+              coords.push(`${nr},${nc}`);
+            } else {
+              match = false;
+              break;
+            }
+          }
+          if (match) {
+            return coords;
+          }
+        }
+      }
+    }
+  }
+  return null;
+}
+
 interface WordFindPuzzleProps {
   onSolve: () => void;
 }
@@ -580,9 +613,26 @@ function WordFindPuzzle({ onSolve }: WordFindPuzzleProps) {
       .then(res => res.json())
       .then(data => {
         if (data.success && data.questions.length > 0) {
-          const parsed = JSON.parse(data.questions[0].question);
-          setSearchWords(parsed.words);
-          setCoordinates(parsed.coordinates);
+          const rawQuestion = data.questions[0].question;
+          let words: string[] = [];
+          let coords: Record<string, string[]> = {};
+          
+          try {
+            const parsed = JSON.parse(rawQuestion);
+            words = parsed.words || [];
+            coords = parsed.coordinates || {};
+          } catch (e) {
+            words = rawQuestion.split(",").map((w: string) => w.trim()).filter(Boolean);
+            words.forEach((word: string) => {
+              const foundCoords = findWordCoordinates(word, WORD_SEARCH_GRID);
+              if (foundCoords) {
+                coords[word] = foundCoords;
+              }
+            });
+          }
+          
+          setSearchWords(words);
+          setCoordinates(coords);
           setStatus('playing');
         }
       })
@@ -786,10 +836,20 @@ function TechQuizPuzzle({ onSolve }: TechQuizPuzzleProps) {
           const items = data.questions
             .filter((q: any) => q.puzzleKey.startsWith("tech_quiz_"))
             .map((q: any) => {
-              const parsed = JSON.parse(q.question);
+              let text = q.question;
+              let options: string[] = [];
+              try {
+                const parsed = JSON.parse(q.question);
+                text = parsed.text || text;
+                options = parsed.options || options;
+              } catch (e) {
+                if (q.answer) {
+                  options = [q.answer];
+                }
+              }
               return {
-                text: parsed.text,
-                options: parsed.options,
+                text,
+                options,
                 puzzleKey: q.puzzleKey
               };
             })
@@ -947,11 +1007,21 @@ function SpellMakingPuzzle({ onSolve }: SpellMakingPuzzleProps) {
           const items = data.questions
             .filter((q: any) => q.puzzleKey.startsWith("spell_making_"))
             .map((q: any) => {
-              const parsed = JSON.parse(q.question);
+              let name = q.question;
+              let description = `Combine elements to cast ${q.question.toLowerCase()}`;
+              let ingredients = q.answer ? q.answer.split(",") : [];
+              try {
+                const parsed = JSON.parse(q.question);
+                name = parsed.name || name;
+                description = parsed.description || description;
+                ingredients = parsed.ingredients || ingredients;
+              } catch (e) {
+                // fallback used
+              }
               return {
-                name: parsed.name,
-                description: parsed.description,
-                ingredients: parsed.ingredients,
+                name,
+                description,
+                ingredients,
                 puzzleKey: q.puzzleKey
               };
             })
@@ -1211,10 +1281,20 @@ function TombBuilderPuzzle({ onSolve }: TombBuilderPuzzleProps) {
           const items = data.questions
             .filter((q: any) => q.puzzleKey.startsWith("tomb_builder_"))
             .map((q: any) => {
-              const parsed = JSON.parse(q.question);
+              let name = "Tomb Structure";
+              let grid = [[0, 0, 0], [0, 0, 0], [1, 1, 1]];
+              try {
+                const parsed = JSON.parse(q.question);
+                name = parsed.name || name;
+                grid = parsed.grid || grid;
+              } catch (e) {
+                if (q.answer) {
+                  grid = q.answer.split("|").map((row: string) => row.split(",").map(Number));
+                }
+              }
               return {
-                name: parsed.name,
-                grid: parsed.grid,
+                name,
+                grid,
                 puzzleKey: q.puzzleKey
               };
             })
@@ -1407,11 +1487,32 @@ function SealRevealPuzzle({ onSolve }: SealRevealPuzzleProps) {
           const items = data.questions
             .filter((q: any) => q.puzzleKey.startsWith("seal_reveal_"))
             .map((q: any) => {
-              const parsed = JSON.parse(q.question);
+              let name = q.answer || "";
+              let char = "";
+              let desc = q.question;
+              
+              if (q.question) {
+                const match = q.question.match(/:\s*(\p{Any})/u);
+                if (match) {
+                  char = match[1];
+                } else {
+                  char = q.question.trim().slice(-1);
+                }
+              }
+              
+              try {
+                const parsed = JSON.parse(q.question);
+                name = parsed.name || name;
+                char = parsed.char || char;
+                desc = parsed.desc || desc;
+              } catch (e) {
+                // fallback used
+              }
+              
               return {
-                name: parsed.name,
-                char: parsed.char,
-                desc: parsed.desc,
+                name,
+                char,
+                desc,
                 puzzleKey: q.puzzleKey
               };
             });
@@ -1642,7 +1743,16 @@ function PapyrusRestorePuzzle({ onSolve }: PapyrusRestorePuzzleProps) {
       .then(res => res.json())
       .then(data => {
         if (data.success && data.questions.length > 0) {
-          const parsed: string[] = JSON.parse(data.questions[0].question);
+          let parsed: string[] = [];
+          try {
+            parsed = JSON.parse(data.questions[0].question);
+          } catch (e) {
+            const raw = data.questions[0].question || "";
+            parsed = raw.split(/\n|\|/).map((v: string) => v.trim()).filter(Boolean);
+            if (parsed.length === 0) {
+              parsed = [raw];
+            }
+          }
           let shuffled = parsed.map((v, idx) => ({ text: v, originalIdx: idx }));
           while (true) {
             shuffled = shuffled.sort(() => Math.random() - 0.5);
