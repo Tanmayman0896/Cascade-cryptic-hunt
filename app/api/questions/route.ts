@@ -195,7 +195,7 @@ export async function POST(request: NextRequest) {
     if (normalizedKey === 'stage7') {
       aliases.push('null7', 'null-7', 'null 7')
     } else if (normalizedKey === 'wilhelm_scream') {
-      aliases.push('wilhelm')
+      aliases.push('wilhelm', 'private wilhelm', 'the wilhelm scream', 'wilhelm scream')
     } else if (normalizedKey === 'poe_cipher') {
       aliases.push('gil bronza', 'gil broza')
       fuzzyThreshold = 0.8
