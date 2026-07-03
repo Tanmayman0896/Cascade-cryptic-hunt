@@ -9,35 +9,35 @@ import gsap from "gsap";
 
 const SYMBOL_DETAILS: Record<string, { title: string; desc: string }> = {
   "01": {
-    title: "The Aether Glyph",
+    title: "The Pharaoh's Curse",
     desc: "Recovered from the primary server breach. Its geometric lines align perfectly with archaic celestial mapping ciphers.",
   },
   "02": {
-    title: "The Ouroboros Node",
+    title: "The Lost Chronicle",
     desc: "Extracted from the encrypted transmission logs. Represents infinite recursion, suggesting a self-replicating loop in the network core.",
   },
   "03": {
-    title: "The Chronos Gate",
+    title: "The Dying Flame",
     desc: "Obtained from the metadata of the corrupted time-stamped files. A representation of temporal fragmentation.",
   },
   "04": {
-    title: "The Hecate Sigil",
+    title: "The Crimson Carnival",
     desc: "Discovered within the deep web darknet handshake protocols. Points to three intersecting nodes in the darknet routing table.",
   },
   "05": {
-    title: "The Nemesis Prism",
+    title: "The Blue Ledger",
     desc: "Retrieved from the memory dump of the compromised firewall. Refracts incoming security scans into harmless noise.",
   },
   "06": {
-    title: "The Void Catalyst",
+    title: "The Override Sequence",
     desc: "Found embedded in the binary structure of the zero-day exploit. Synthesizes empty space to absorb memory buffer overflows.",
   },
   "07": {
-    title: "The Aetherion Cipher",
+    title: "Operation Deadlight",
     desc: "Decoded from the final radio transmission. The primary key used to lock Operation Deadlight's communication array.",
   },
   "08": {
-    title: "The Singularity Core",
+    title: "The Broken Deck",
     desc: "Acquired from the core reactor console before collapse. The ultimate symbol that binds all other network nodes together.",
   },
 };
