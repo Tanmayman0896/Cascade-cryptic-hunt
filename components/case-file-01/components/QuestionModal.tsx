@@ -1331,47 +1331,47 @@ function TombBuilderPuzzle({ onSolve }: TombBuilderPuzzleProps) {
     const activeLvl = levels[tombIdx];
     if (!activeLvl) return;
 
-    setGrid(prev => {
-      const next = prev.map((row, ri) => 
-        row.map((cell, ci) => (ri === r && ci === c) ? (cell + 1) % 5 : cell)
-      );
+    const nextGrid = grid.map((row, ri) => 
+      row.map((cell, ci) => (ri === r && ci === c) ? (cell + 1) % 5 : cell)
+    );
+    setGrid(nextGrid);
 
-      // Verify grid match via API POST!
-      const gridString = next.map(row => row.join(",")).join("|");
-      
-      fetch("/api/questions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          caseId: "01",
-          puzzleKey: activeLvl.puzzleKey,
-          answer: gridString
-        })
+    // Verify grid match via API POST!
+    const gridString = nextGrid.map(row => row.join(",")).join("|");
+    
+    fetch("/api/questions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        caseId: "01",
+        puzzleKey: activeLvl.puzzleKey,
+        answer: gridString
       })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success && data.correct) {
-          setStatus('success');
-          setTimeout(() => {
-            if (tombIdx === levels.length - 1) {
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success && data.correct) {
+        setStatus('success');
+        setTimeout(() => {
+          setTombIdx(prev => {
+            if (prev === levels.length - 1) {
               setStatus('completed');
               setTimeout(onSolve, 1000);
+              return prev;
             } else {
-              setTombIdx(prev => prev + 1);
               setGrid([
                 [0, 0, 0],
                 [0, 0, 0],
                 [0, 0, 0]
               ]);
               setStatus('drafting');
+              return prev + 1;
             }
-          }, 1000);
-        }
-      })
-      .catch(err => console.error(err));
-
-      return next;
-    });
+          });
+        }, 1000);
+      }
+    })
+    .catch(err => console.error(err));
   };
 
   const currentBlueprint = levels[tombIdx]?.grid;
