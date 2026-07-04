@@ -77,15 +77,15 @@ export function Act8FinalTransmission({ onPuzzleSolved }: { onPuzzleSolved: () =
   useEffect(() => {
     if (!showFinalNotes) return
     let timerId: NodeJS.Timeout
+    let isCancelled = false
     let currentIndex = 0
     setTypedNotes([]) // Clear on trigger
 
     const tick = () => {
+      if (isCancelled) return
       if (currentIndex < storyLines.length) {
-        setTypedNotes(prev => {
-          if (prev.length >= storyLines.length) return prev
-          return [...prev, storyLines[currentIndex]]
-        })
+        const nextLine = storyLines[currentIndex]
+        setTypedNotes(prev => [...prev, nextLine])
         currentIndex++
         timerId = setTimeout(tick, 220) // Slower typing pace for readability
         
@@ -96,7 +96,9 @@ export function Act8FinalTransmission({ onPuzzleSolved }: { onPuzzleSolved: () =
       } else {
         setAllNotesDone(true)
         timerId = setTimeout(() => {
-          window.location.href = '/hunt'
+          if (!isCancelled) {
+            window.location.href = '/hunt'
+          }
         }, 12000) // 12 seconds auto-redirect delay
       }
     }
@@ -104,6 +106,7 @@ export function Act8FinalTransmission({ onPuzzleSolved }: { onPuzzleSolved: () =
     timerId = setTimeout(tick, 220)
 
     return () => {
+      isCancelled = true
       clearTimeout(timerId)
     }
   }, [showFinalNotes])

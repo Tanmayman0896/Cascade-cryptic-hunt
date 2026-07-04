@@ -74,7 +74,8 @@ function useMusicEngine() {
       }, 3000 + Math.random() * 5000);
       r.current.timers.push(tid);
     }
-    setTimeout(scheduleShim, 1500);
+    const tShim = setTimeout(scheduleShim, 1500);
+    r.current.timers.push(tShim);
 
     const motNotes = [98, 110, 131, 147, 175, 196, 220]; let mi = 0;
     function scheduleMotif() {
@@ -88,7 +89,8 @@ function useMusicEngine() {
       }, 1600 + Math.random() * 2800);
       r.current.timers.push(tid);
     }
-    setTimeout(scheduleMotif, 800);
+    const tMot = setTimeout(scheduleMotif, 800);
+    r.current.timers.push(tMot);
 
     const buf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
     const d = buf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
@@ -1766,6 +1768,12 @@ export default function App() {
   const [trans, setTrans] = useState(false);
   const ivRef = useRef<any>(null);
   const music = useMusicEngine();
+
+  useEffect(() => {
+    return () => {
+      music.stop();
+    };
+  }, []);
 
   useEffect(() => {
     if (timerOn) { ivRef.current = setInterval(() => setElapsed(e => e + 1), 1000); }
