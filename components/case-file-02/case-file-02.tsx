@@ -1160,15 +1160,15 @@ function PuzzleLogic({ onSolve, onPenalty }: { onSolve: () => void, onPenalty: (
 // PUZZLE VI — CROSSWORD
 // ═══════════════════════════════════════════════
 const CW = [
-  { clue: "", answer: "", keyLetter: "" },
-  { clue: "", answer: "", keyLetter: "" },
-  { clue: "", answer: "", keyLetter: "" },
-  { clue: "", answer: "", keyLetter: "" },
-  { clue: "", answer: "", keyLetter: "" },
-  { clue: "", answer: "", keyLetter: "" },
-  { clue: "", answer: "", keyLetter: "" },
-  { clue: "", answer: "", keyLetter: "" },
-  { clue: "", answer: "", keyLetter: "" }
+  { clue: "The timeline continuum track (8 letters)",              answer: "TIMELINE", keyLetter: "T" },
+  { clue: "The beginning point of Aurelis's journey (6 letters)",  answer: "ORIGIN",   keyLetter: "O" },
+  { clue: "Recorded historical testimony (6 letters)",             answer: "RECORD",   keyLetter: "R" },
+  { clue: "The direction of the gate stone inscription (7 letters)",answer: "EASTERN",  keyLetter: "E" },
+  { clue: "Third cartographic expedition (7 letters)",             answer: "CRUSADE",  keyLetter: "C" },
+  { clue: "Lord of eternity who rules the underworld (6 letters)", answer: "OSIRIS",   keyLetter: "O" },
+  { clue: "Project NULL lead scientist Dr. (4 letters)",           answer: "VOSS",     keyLetter: "V" },
+  { clue: "Unclassified archive findings (8 letters)",             answer: "EVIDENCE", keyLetter: "E" },
+  { clue: "Voss's final instruction word (7 letters)",             answer: "RESTORE",  keyLetter: "R" },
 ];
 const CW_KEYWORD = "";
 function PuzzleCrossword({ onSolve, onPenalty }: { onSolve: () => void, onPenalty: () => void }) {
