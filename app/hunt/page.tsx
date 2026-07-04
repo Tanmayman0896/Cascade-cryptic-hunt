@@ -413,9 +413,10 @@ export default function HuntPage() {
 
             if (isCompleted) {
               return (
-                <div
+                <Link
                   key={origIndex}
-                  className="flex flex-col items-center justify-center h-36 md:h-44 bg-zinc-950/20 border border-emerald-950/40 rounded-xl p-6 relative overflow-hidden select-none cursor-not-allowed group"
+                  href={`/hunt/case-${num}`}
+                  className="flex flex-col items-center justify-center h-36 md:h-44 bg-zinc-950/20 border border-emerald-950/40 rounded-xl p-6 relative overflow-hidden select-none cursor-pointer group hover:border-emerald-500/50 hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all duration-300"
                 >
                   {["01", "02", "03", "04", "05", "06", "07", "08", "09"].includes(num) && (
                     <>
@@ -425,18 +426,18 @@ export default function HuntPage() {
                         fill
                         priority
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover scale-[1.2] z-0"
+                        className="object-cover scale-[1.2] group-hover:scale-[1.25] transition-transform duration-300 z-0"
                       />
-                      <div className="absolute inset-0 bg-black/60 z-0" />
+                      <div className="absolute inset-0 bg-black/60 group-hover:bg-black/45 transition-colors duration-300 z-0" />
                     </>
                   )}
                   {/* Muted green matrix overlay */}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-emerald-500/[0.01] z-10" />
                   
-                  <div className="absolute bottom-3 right-4 font-mono text-[9px] tracking-[0.2em] text-emerald-500/60 bg-emerald-950/20 px-2 py-0.5 border border-emerald-500/20 rounded z-20">
+                  <div className="absolute bottom-3 right-4 font-mono text-[9px] tracking-[0.2em] text-emerald-400 bg-emerald-950/40 px-2 py-0.5 border border-emerald-500/40 rounded z-20 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
                     SECURED
                   </div>
-                </div>
+                </Link>
               );
             }
 
