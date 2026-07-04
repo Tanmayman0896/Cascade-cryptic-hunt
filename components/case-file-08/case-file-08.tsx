@@ -718,6 +718,52 @@ function Shell({ index, title, prompt, hints, children }: ShellProps) {
 }
 
 /* ── PUZZLE DATA / COMPONENTS ── */
+function normalizeAnswer(s: string): string {
+  if (!s) return "";
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function checkClientAnswer(puzzleKey: string, answer: string): boolean {
+  const norm = normalizeAnswer(answer);
+  const rawClean = (answer || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  if (!norm && !rawClean) return false;
+
+  switch (puzzleKey) {
+    case "p1":
+    case "dossier_1":
+      return norm.includes("october") || rawClean.includes("october") || norm === "14101972" || rawClean === "14101972";
+    case "p2":
+    case "dossier_2":
+      return rawClean === "ek4";
+    case "p3":
+    case "dossier_3":
+      return rawClean === "delta";
+    case "p4":
+    case "dossier_4":
+      return rawClean === "7294";
+    case "p5":
+    case "dossier_5":
+      return rawClean === "thenullroom" || rawClean === "nullroom";
+    case "p6":
+    case "dossier_6":
+      return rawClean === "nullgate";
+    case "p7":
+      return rawClean === "watcher";
+    case "p8":
+      return rawClean === "zero";
+    case "dossier_7":
+      return rawClean === "1967";
+    case "dossier_8":
+      return rawClean === "voss";
+    default:
+      return false;
+  }
+}
+
 const P1_LINES = [
   { time:"22:01", raw:"Transmission alpha.. —received.. Station.. clear.—.", decoded:"LISTEN" },
   { time:"22:04", raw:"Signal.. noise—ratio.. nominal.—.. Awaiting.. confirm.", decoded:"TINSEL" },
@@ -738,13 +784,19 @@ function P1({ wrong, locked, onSolve, dbAnswers = {} }: PuzzleProps & { dbAnswer
     if (locked || isVerifying) return;
     setIsVerifying(true);
     try {
-      const res = await fetch("/api/questions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ caseId: "08", puzzleKey: "p1", answer: inp })
-      });
-      const data = await res.json();
-      if (data.success && data.correct) {
+      let isCorrect = checkClientAnswer("p1", inp);
+      if (!isCorrect) {
+        try {
+          const res = await fetch("/api/questions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ caseId: "08", puzzleKey: "p1", answer: inp })
+          });
+          const data = await res.json();
+          if (data.success && data.correct) isCorrect = true;
+        } catch (err) {}
+      }
+      if (isCorrect) {
         setSt({ ok: true, msg: "Confirmed — verified." });
         setTimeout(onSolve, 700);
       } else {
@@ -814,13 +866,19 @@ function P2({ wrong, locked, onSolve, dbAnswers = {} }: PuzzleProps & { dbAnswer
     if (locked || isVerifying) return;
     setIsVerifying(true);
     try {
-      const res = await fetch("/api/questions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ caseId: "08", puzzleKey: "p2", answer: inp })
-      });
-      const data = await res.json();
-      if (data.success && data.correct) {
+      let isCorrect = checkClientAnswer("p2", inp);
+      if (!isCorrect) {
+        try {
+          const res = await fetch("/api/questions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ caseId: "08", puzzleKey: "p2", answer: inp })
+          });
+          const data = await res.json();
+          if (data.success && data.correct) isCorrect = true;
+        } catch (err) {}
+      }
+      if (isCorrect) {
         setSt({ ok: true, msg: `Three contradictions confirmed.` });
         setTimeout(onSolve, 700);
       } else {
@@ -887,13 +945,19 @@ function P3({ wrong, locked, onSolve, dbAnswers = {} }: PuzzleProps & { dbAnswer
     if (locked || isVerifying) return;
     setIsVerifying(true);
     try {
-      const res = await fetch("/api/questions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ caseId: "08", puzzleKey: "p3", answer: inp })
-      });
-      const data = await res.json();
-      if (data.success && data.correct) {
+      let isCorrect = checkClientAnswer("p3", inp);
+      if (!isCorrect) {
+        try {
+          const res = await fetch("/api/questions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ caseId: "08", puzzleKey: "p3", answer: inp })
+          });
+          const data = await res.json();
+          if (data.success && data.correct) isCorrect = true;
+        } catch (err) {}
+      }
+      if (isCorrect) {
         setSt({ ok: true, msg: `Codename confirmed.` });
         setTimeout(onSolve, 700);
       } else {
@@ -966,13 +1030,19 @@ function P4({ wrong, locked, onSolve, dbAnswers = {} }: PuzzleProps & { dbAnswer
     if (locked || isVerifying) return;
     setIsVerifying(true);
     try {
-      const res = await fetch("/api/questions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ caseId: "08", puzzleKey: "p4", answer: inp })
-      });
-      const data = await res.json();
-      if (data.success && data.correct) {
+      let isCorrect = checkClientAnswer("p4", inp);
+      if (!isCorrect) {
+        try {
+          const res = await fetch("/api/questions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ caseId: "08", puzzleKey: "p4", answer: inp })
+          });
+          const data = await res.json();
+          if (data.success && data.correct) isCorrect = true;
+        } catch (err) {}
+      }
+      if (isCorrect) {
         setSt({ ok: true, msg: `PIN confirmed.` });
         setTimeout(onSolve, 700);
       } else {
@@ -1081,13 +1151,19 @@ function P5({ wrong, locked, onSolve, dbAnswers = {} }: PuzzleProps & { dbAnswer
     if (locked || isVerifying) return;
     setIsVerifying(true);
     try {
-      const res = await fetch("/api/questions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ caseId: "08", puzzleKey: "p5", answer: inp })
-      });
-      const data = await res.json();
-      if (data.success && data.correct) {
+      let isCorrect = checkClientAnswer("p5", inp);
+      if (!isCorrect) {
+        try {
+          const res = await fetch("/api/questions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ caseId: "08", puzzleKey: "p5", answer: inp })
+          });
+          const data = await res.json();
+          if (data.success && data.correct) isCorrect = true;
+        } catch (err) {}
+      }
+      if (isCorrect) {
         setSt({ ok: true, msg: `Location confirmed.` });
         setTimeout(onSolve, 700);
       } else {
@@ -1184,13 +1260,19 @@ function P6({ wrong, locked, onSolve, dbAnswers = {} }: PuzzleProps & { dbAnswer
     if (locked || isVerifying) return;
     setIsVerifying(true);
     try {
-      const res = await fetch("/api/questions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ caseId: "08", puzzleKey: "p6", answer: inp })
-      });
-      const data = await res.json();
-      if (data.success && data.correct) {
+      let isCorrect = checkClientAnswer("p6", inp);
+      if (!isCorrect) {
+        try {
+          const res = await fetch("/api/questions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ caseId: "08", puzzleKey: "p6", answer: inp })
+          });
+          const data = await res.json();
+          if (data.success && data.correct) isCorrect = true;
+        } catch (err) {}
+      }
+      if (isCorrect) {
         setSt({ ok: true, msg: "Project name confirmed — NULL-GATE." });
         setTimeout(onSolve, 700);
       } else {
@@ -1281,13 +1363,19 @@ function P7({ wrong, locked, onSolve, dbAnswers = {} }: PuzzleProps & { dbAnswer
     if (locked || isVerifying) return;
     setIsVerifying(true);
     try {
-      const res = await fetch("/api/questions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ caseId: "08", puzzleKey: "p7", answer: inp })
-      });
-      const data = await res.json();
-      if (data.success && data.correct) {
+      let isCorrect = checkClientAnswer("p7", inp);
+      if (!isCorrect) {
+        try {
+          const res = await fetch("/api/questions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ caseId: "08", puzzleKey: "p7", answer: inp })
+          });
+          const data = await res.json();
+          if (data.success && data.correct) isCorrect = true;
+        } catch (err) {}
+      }
+      if (isCorrect) {
         setSt({ ok: true, msg: `Blueprint cipher resolved.` });
         setTimeout(onSolve, 700);
       } else {
@@ -1386,13 +1474,19 @@ function P8({ wrong, locked, onSolve, dbAnswers = {} }: PuzzleProps & { dbAnswer
     if (locked || isVerifying) return;
     setIsVerifying(true);
     try {
-      const res = await fetch("/api/questions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ caseId: "08", puzzleKey: "p8", answer: inp })
-      });
-      const data = await res.json();
-      if (data.success && data.correct) {
+      let isCorrect = checkClientAnswer("p8", inp);
+      if (!isCorrect) {
+        try {
+          const res = await fetch("/api/questions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ caseId: "08", puzzleKey: "p8", answer: inp })
+          });
+          const data = await res.json();
+          if (data.success && data.correct) isCorrect = true;
+        } catch (err) {}
+      }
+      if (isCorrect) {
         setSt({ ok: true, msg: `Sequence anomaly confirmed.` });
         setTimeout(onSolve, 700);
       } else {
@@ -1484,13 +1578,19 @@ function P9({ wrong, locked, onSolve, dbAnswers = {} }: PuzzleProps & { dbAnswer
 
     try {
       const results = await Promise.all(DOSSIER.map(async (b, i) => {
-        const res = await fetch("/api/questions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ caseId: "08", puzzleKey: `dossier_${i + 1}`, answer: vals[i] })
-        });
-        const data = await res.json();
-        return !!(data.success && data.correct);
+        let isCorrect = checkClientAnswer(`dossier_${i + 1}`, vals[i]);
+        if (!isCorrect) {
+          try {
+            const res = await fetch("/api/questions", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ caseId: "08", puzzleKey: `dossier_${i + 1}`, answer: vals[i] })
+            });
+            const data = await res.json();
+            if (data.success && data.correct) isCorrect = true;
+          } catch (err) {}
+        }
+        return isCorrect;
       }));
 
       const bad = DOSSIER
