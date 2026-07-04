@@ -175,36 +175,53 @@ export async function POST(request: NextRequest) {
       )
     )
 
-    if (rows.length === 0) {
-      return NextResponse.json({ success: true, correct: false, message: 'Question not found' })
+    const HARDCODED_FALLBACKS: Record<string, Record<string, string>> = {
+      "09": {
+        "stage2": "NULLEVENT",
+        "morse": "THE ARCHIVE REMEMBERS WHAT WE FORGOT"
+      }
+    };
+
+    let dbAnswer: string | null = rows.length > 0 ? rows[0].answer : null;
+    if (!dbAnswer) {
+      dbAnswer = HARDCODED_FALLBACKS[caseId]?.[normalizedKey] || HARDCODED_FALLBACKS[caseId]?.[puzzleKey] || null;
     }
 
-    const dbAnswer = rows[0].answer
-    const normDb = normalize(dbAnswer)
-    const normUser = normalize(answer)
+    if (!dbAnswer) {
+      return NextResponse.json({ success: true, correct: false, message: 'Question not found' });
+    }
 
-    let correct = normDb === normUser
-    let partial = false
+    const normDb = normalize(dbAnswer);
+    const normUser = normalize(answer);
 
-    const aliases: string[] = []
-    let fuzzyThreshold = 1.0
+    let correct = normDb === normUser;
+    let partial = false;
 
-    if (normalizedKey === 'stage7') {
-      aliases.push('null7', 'null-7', 'null 7')
+    const aliases: string[] = [];
+    let fuzzyThreshold = 1.0;
+
+    if (caseId === "09") {
+      if (normalizedKey === "stage2") {
+        aliases.push("nullevent", "null event", "null_event", "null-event");
+      } else if (normalizedKey === "morse") {
+        aliases.push("the archive remembers what we forgot", "thearchiverememberswhatweforgot", "archive remembers what we forgot");
+      }
+    } else if (normalizedKey === 'stage7') {
+      aliases.push('null7', 'null-7', 'null 7');
     } else if (normalizedKey === 'wilhelm_scream') {
-      aliases.push('wilhelm', 'private wilhelm', 'the wilhelm scream', 'wilhelm scream')
+      aliases.push('wilhelm', 'private wilhelm', 'the wilhelm scream', 'wilhelm scream');
     } else if (normalizedKey === 'poe_cipher') {
-      aliases.push('gil bronza', 'gil broza')
-      fuzzyThreshold = 0.8
+      aliases.push('gil bronza', 'gil broza');
+      fuzzyThreshold = 0.8;
     } else if (normalizedKey === 'deep_blue') {
-      aliases.push('kasparov')
-      fuzzyThreshold = 0.8
+      aliases.push('kasparov');
+      fuzzyThreshold = 0.8;
     } else if (normalizedKey === 'kryptos_cipher') {
-      fuzzyThreshold = 0.9
+      fuzzyThreshold = 0.9;
     } else if (normalizedKey === 'mirror_script') {
-      aliases.push('carnival 17', 'carnival17', 'reveal')
+      aliases.push('carnival 17', 'carnival17', 'reveal');
     } else if (normalizedKey === 'golden_record') {
-      fuzzyThreshold = 0.8
+      fuzzyThreshold = 0.8;
     } else if (normalizedKey === 'chronicle_sort') {
       aliases.push(
         'hwtoll', 
@@ -215,19 +232,19 @@ export async function POST(request: NextRequest) {
         '012345',
         'light leads only the worthy home',
         'emoh yhtrow eht ylno sdael thgil'
-      )
+      );
     } else if (normalizedKey === 'audio_game') {
-      aliases.push('crimson', 'resonance')
+      aliases.push('crimson', 'resonance');
     }
 
     // Special Case 8 handling
     if (caseId === '08') {
       if (normalizedKey === 'p1' || normalizedKey === 'dossier_1') {
-        aliases.push('14 october 1972', '14-oct-1972', '14 oct 1972', 'october 14 1972', '14/10/1972', '14-10-1972')
+        aliases.push('14 october 1972', '14-oct-1972', '14 oct 1972', 'october 14 1972', '14/10/1972', '14-10-1972');
       } else if (normalizedKey === 'p5' || normalizedKey === 'dossier_5') {
-        aliases.push('the null room', 'null room')
+        aliases.push('the null room', 'null room');
       } else if (normalizedKey === 'p6' || normalizedKey === 'dossier_6') {
-        aliases.push('null-gate', 'null gate', 'nullgate')
+        aliases.push('null-gate', 'null gate', 'nullgate');
       }
     }
 
