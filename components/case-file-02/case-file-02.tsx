@@ -1188,7 +1188,7 @@ function PuzzleCrossword({ onSolve, onPenalty }: { onSolve: () => void, onPenalt
         const data = await res.json();
         if (data.success && data.questions) {
           const sorted = [...data.questions]
-            .filter((q: any) => q.puzzleKey !== "cw_keyword")
+            .filter((q: any) => q.puzzleKey.startsWith("cw_") && q.puzzleKey !== "cw_keyword")
             .sort((a: any, b: any) => String(a.puzzleKey).localeCompare(String(b.puzzleKey)));
           const loaded = sorted.map((q: any) => ({
             clue: q.question,
