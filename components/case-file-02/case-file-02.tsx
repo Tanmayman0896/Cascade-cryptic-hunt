@@ -908,7 +908,7 @@ const ARCHIVE_FRAGS = [
 ];
 const CORRECT_ORDER = ["a","b","c","d","e"];
 const SCRAMBLED_ORDER = ["b","c","d","e","a"];
-const MAX_ARCHIVE_SWAPS = 5;
+const MAX_ARCHIVE_SWAPS = 10;
 
 function PuzzleArchive({ onSolve, onPenalty }: { onSolve: () => void, onPenalty: () => void }) {
   const [order, setOrder] = useState<string[]>([...SCRAMBLED_ORDER]);
@@ -977,7 +977,7 @@ function PuzzleArchive({ onSolve, onPenalty }: { onSolve: () => void, onPenalty:
           })}
           <Card style={{ marginTop: 8 }}>
             <Btn onClick={submit} color="#4a7aff" disabled={cdActive}>CONFIRM CHRONOLOGY</Btn>
-            {attempts > 0 && <HintBox text="No explicit dates are given — infer the order from context clues in each fragment (named events, technology, references to other moments in the story)." />}
+            {attempts > 0 && <HintBox text="Order by century: 1087 CE (land accord) → 1189 CE (Third Crusade) → 1492 CE (Canary Islands) → 1789 CE (trade map) → 1978 CE (Project NULL). Fragment 'a' (bottom) belongs at position 1." />}
           </Card>
         </>
       )}
