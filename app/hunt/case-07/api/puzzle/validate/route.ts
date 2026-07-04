@@ -16,6 +16,15 @@ const allowedPuzzles = new Set([
   'final-transmission',
 ])
 
+const FALLBACK_ANSWERS: Record<string, string> = {
+  'quarantine-registration': 'PLAGAS',
+  'behavioral-match': 'LURE',
+  'black-symbol': 'REPLACE',
+  'identity-distortion': 'INFILTRATE',
+  'memory-corruption': 'OUTBREAK',
+  'final-transmission': 'AETHERION',
+}
+
 function digest(value: string) {
   return createHash('sha256').update(value.trim().toUpperCase()).digest()
 }
@@ -27,7 +36,20 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ correct: false, message: 'CSRF validation failed.' }, { status: 403 })
     }
 
-    const session = await getSession()
+    let session = await getSession()
+    if (!session && !isDbAvailable) {
+      session = {
+        userId: 'demo-agent-uuid',
+        name: 'Demo Agent',
+        email: 'agent@aetherion.org',
+        teamName: 'Demo Team',
+        integrity: 100,
+        recovered: [],
+        hints: 0,
+        wrongAttempts: {},
+      }
+    }
+
     if (!session) {
       return NextResponse.json({ correct: false, message: 'Unauthenticated.' }, { status: 401 })
     }
@@ -43,7 +65,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ correct: false, message: 'Invalid puzzle parameters.' }, { status: 400 })
     }
 
-    // Determine expected answer: check DB first, fall back to env key
+    // Determine expected answer: check DB first, fall back to env key, then fallback dictionary
     let expected = ""
     if (isDbAvailable) {
       try {
@@ -63,7 +85,7 @@ export async function POST(request: NextRequest) {
 
     if (!expected) {
       const envKey = `PUZZLE_OPERATION_DEADLIGHT_${puzzleId.replaceAll('-', '_').toUpperCase()}`
-      expected = process.env[envKey] || ""
+      expected = process.env[envKey] || FALLBACK_ANSWERS[puzzleId] || ""
     }
 
     if (!expected) {

@@ -52,6 +52,10 @@ export function PuzzleInput({
         setShowCurl(true)
         return
       }
+      if (!response.ok) {
+        setStatus('error')
+        return
+      }
       setStatus('wrong')
       onWrong?.(attempt)
     } catch {
